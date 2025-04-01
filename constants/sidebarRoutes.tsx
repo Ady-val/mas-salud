@@ -1,4 +1,4 @@
-import { FaHouse, FaScrewdriverWrench } from 'react-icons/fa6';
+import { FaHouse, FaUser } from 'react-icons/fa6';
 
 interface SidebarRoute {
   title: string;
@@ -13,8 +13,13 @@ export const sidebarRoutes: SidebarRoute[] = [
     icon: <FaHouse />,
   },
   {
-    title: 'Configuración',
-    path: '/dashboard/settings',
-    icon: <FaScrewdriverWrench />,
+    title: 'Beneficiarios',
+    path: '/dashboard/beneficiaries',
+    icon: <FaUser />,
   },
+  // {
+  //   title: 'Configuración',
+  //   path: '/dashboard/settings',
+  //   icon: <FaScrewdriverWrench />,
+  // },
 ];

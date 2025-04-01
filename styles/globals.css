@@ -19,7 +19,7 @@
 }
 
 .navlink-component {
-  @apply h-14 w-full text-2xl text-white pl-4;
+  @apply h-14 w-full text-2xl text-main pl-4;
 }
 
 .navlink-item {
@@ -31,7 +31,7 @@
 }
 
 .navlink-item-active {
-  @apply bg-white text-primary hover:bg-white;
+  @apply bg-main text-primary hover:bg-main;
 }
 
 .main-background {

@@ -34,7 +34,7 @@ export default function RootLayout({
       <head />
       <body
         className={clsx(
-          'flex-1 h-screen min-h-[15rem] overflow-auto bg-background font-sans antialiased',
+          'flex-1 h-screen min-h-[15rem] overflow-auto bg-main font-sans antialiased',
           // fontRoboto.variable,
         )}
       >

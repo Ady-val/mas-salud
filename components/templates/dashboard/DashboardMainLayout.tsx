@@ -14,7 +14,9 @@ const DashboardMainLayout: React.FC<MainLayoutProps> = ({
   return (
     <div className='w-full h-full flex flex-col gap-2'>
       {header && <header className='flex-shrink-0'>{header}</header>}
-      <main className='flex-grow'>{children}</main>
+      <main className='flex-grow bg-white rounded-md shadow-lg'>
+        {children}
+      </main>
       {footer && <footer className='flex-shrink-0'>{footer}</footer>}
     </div>
   );
