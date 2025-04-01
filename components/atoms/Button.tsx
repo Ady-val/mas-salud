@@ -1,6 +1,7 @@
+'use client';
+
 import React from 'react';
 import { Button as HerouiButton } from '@heroui/button';
-import { FaCircleNotch } from 'react-icons/fa6';
 
 interface ButtonProps {
   text: string;
@@ -31,9 +32,8 @@ const Button: React.FC<ButtonProps> = ({
       radius='md'
       variant='solid'
       color={color}
-      colorScheme='primary'
       className={`${className}`}
-      onClick={onClick}
+      onPress={onClick}
       disabled={disabled}
       isLoading={isLoading}
     >

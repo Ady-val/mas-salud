@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 
 import { CardFooter as AtomFooter } from '@/components/atoms';

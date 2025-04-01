@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 
 import { Card, Divider, Input, Button } from '@/components/atoms';
@@ -10,6 +12,7 @@ interface AuthFormProps {
   onChangePassword: (event: React.ChangeEvent<HTMLInputElement>) => void;
   isLoading: boolean;
   isInvalid?: boolean;
+  errorMessage?: string;
   onClick: () => void;
 }
 
@@ -20,6 +23,7 @@ const AuthForm: React.FC<AuthFormProps> = ({
   onChangePassword,
   isLoading,
   isInvalid = false,
+  errorMessage,
   onClick,
 }) => {
   return (
@@ -57,8 +61,10 @@ const AuthForm: React.FC<AuthFormProps> = ({
           disabled={isLoading}
           onClick={onClick}
         />
-        <div className='w-full h-2 mt-3 flex items-center justify-center text-red-500 text-sm'>
-          {isInvalid && 'Error en usuario o contraseña'}
+        <div className='w-full mt-3 flex items-center justify-center text-red-500 text-sm'>
+          {isInvalid && errorMessage && (
+            <span className='w-3/4 text-wrap text-center'>{errorMessage}</span>
+          )}
         </div>
       </CardFooter>
     </Card>
