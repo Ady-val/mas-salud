@@ -1,11 +1,8 @@
+import { redirect } from 'next/navigation';
 import React from 'react';
 
-interface DashboardPageProps {
-  children: React.ReactNode;
-}
-
-const DashboardPage: React.FC<DashboardPageProps> = ({ children }) => {
-  return <>{children}</>;
+const DashboardPage: React.FC = () => {
+  redirect('/dashboard/home');
 };
 
 export default DashboardPage;
