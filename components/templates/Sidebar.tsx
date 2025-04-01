@@ -4,7 +4,7 @@ import { sidebarRoutes } from '@/constants/sidebarRoutes';
 
 const SideBar = () => {
   return (
-    <aside className='w-[80px] bg-primary h-screen'>
+    <aside className='w-[80px] bg-primary h-full'>
       <div className='w-full h-20' />
       <div className='w-full flex flex-col gap-1'>
         {sidebarRoutes.map((item, index) => (
