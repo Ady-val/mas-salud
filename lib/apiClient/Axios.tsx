@@ -14,21 +14,16 @@ axiosInstance.interceptors.request.use(
   (error) => Promise.reject(error),
 );
 
+axiosInstance.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    console.error('Error en la respuesta de Axios:', error.status, error.code);
+    if (error?.status === 401) {
+      window.location.href = '/login';
+    }
+
+    return Promise.reject(error);
+  },
+);
+
 export default axiosInstance;
-
-// axiosInstance.interceptors.response.use(
-//   (response) => response,
-//   (error) => {
-//     if (axios.isAxiosError(error)) {
-//       console.warn(
-//         'Interceptado error de Axios:',
-//         error.response?.data || error.message,
-//       );
-
-//       // Evitar que Next.js lo rastree devolviendo una respuesta vacía en vez de lanzar el error
-//       return Promise.resolve({ data: null });
-//     }
-
-//     return Promise.reject(error);
-//   },
-// );
