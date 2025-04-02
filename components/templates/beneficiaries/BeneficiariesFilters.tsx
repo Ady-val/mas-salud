@@ -2,8 +2,10 @@
 
 import { useForm } from 'react-hook-form';
 import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 
 import { FilterInput } from '@/components/atoms';
+import { setFilters } from '@/store/slices/beneficiaryFilterSlice';
 
 interface IFilterInput {
   name: string;
@@ -12,12 +14,13 @@ interface IFilterInput {
 }
 
 const BeneficiariesFilters: React.FC = () => {
+  const dispatch = useDispatch();
   const { register, watch } = useForm<IFilterInput>();
   const formValues = watch();
 
   useEffect(() => {
-    console.log('Form values changed:', formValues);
-  }, [formValues]);
+    dispatch(setFilters(formValues));
+  }, [formValues, dispatch]);
 
   return (
     <div className='w-full'>

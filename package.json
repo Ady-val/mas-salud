@@ -27,6 +27,7 @@
     "@heroui/theme": "2.4.12",
     "@react-aria/ssr": "3.9.7",
     "@react-aria/visually-hidden": "3.8.20",
+    "@reduxjs/toolkit": "^2.6.1",
     "@tanstack/react-query": "^5.71.1",
     "axios": "^1.8.4",
     "clsx": "2.1.1",
@@ -37,7 +38,8 @@
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "react-hook-form": "^7.55.0",
-    "react-icons": "^5.5.0"
+    "react-icons": "^5.5.0",
+    "react-redux": "^9.2.0"
   },
   "devDependencies": {
     "@next/eslint-plugin-next": "15.0.4",

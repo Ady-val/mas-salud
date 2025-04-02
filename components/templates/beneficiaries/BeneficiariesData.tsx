@@ -1,15 +1,29 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
+import { useSelector } from 'react-redux';
 
 import { SimpleTable } from '@/components/organisms';
 import { useBeneficiaries } from '@/hooks/useBeneficiaries';
 import { HBeneficiaries } from '@/constants/headers';
+import { RootState } from '@/store';
+import { useDebounce } from '@/hooks/useDebounce';
 
 const ROWS_PER_PAGE = 10;
 
 const BeneficiariesData: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
+  const filters = useSelector((state: RootState) => state.filters);
+
+  const stableFilters = useMemo(() => {
+    return {
+      name: filters.name,
+      lastName: filters.lastName,
+      curp: filters.curp,
+    };
+  }, [filters]);
+
+  const { name, lastName, curp } = useDebounce(stableFilters, 500);
 
   const {
     data: fetchedData,
@@ -18,6 +32,9 @@ const BeneficiariesData: React.FC = () => {
   } = useBeneficiaries({
     page: currentPage,
     limit: ROWS_PER_PAGE,
+    name: name || undefined,
+    lastName: lastName || undefined,
+    curp: curp || undefined,
   });
 
   const handlePageChange = (page: number) => {
