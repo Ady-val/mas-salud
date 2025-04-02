@@ -7,6 +7,7 @@ import { HeroUIProvider } from '@heroui/system';
 import { useRouter } from 'next/navigation';
 import { ThemeProvider as NextThemesProvider } from 'next-themes';
 import { Provider } from 'react-redux';
+import { ToastProvider } from '@heroui/toast';
 
 import QueryProvider from './QueryProvider';
 
@@ -32,7 +33,10 @@ export function Providers({ children, themeProps }: ProvidersProps) {
     <Provider store={store}>
       <HeroUIProvider navigate={router.push}>
         <QueryProvider>
-          <NextThemesProvider {...themeProps}>{children}</NextThemesProvider>
+          <NextThemesProvider {...themeProps}>
+            <ToastProvider placement='top-center' />
+            {children}
+          </NextThemesProvider>
         </QueryProvider>
       </HeroUIProvider>
     </Provider>

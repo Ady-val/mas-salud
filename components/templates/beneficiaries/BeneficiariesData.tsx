@@ -2,16 +2,19 @@
 
 import React, { useEffect, useMemo, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { isAxiosError } from 'axios';
 
 import { SimpleTable } from '@/components/organisms';
 import { useBeneficiaries } from '@/hooks/useBeneficiaries';
 import { HBeneficiaries } from '@/constants/headers';
 import { RootState } from '@/store';
 import { useDebounce } from '@/hooks/useDebounce';
+import { useToast } from '@/hooks/useToast';
 
 const ROWS_PER_PAGE = 10;
 
 const BeneficiariesData: React.FC = () => {
+  const { errorToast } = useToast();
   const [currentPage, setCurrentPage] = useState(1);
   const filters = useSelector((state: RootState) => state.filters);
 
@@ -36,6 +39,15 @@ const BeneficiariesData: React.FC = () => {
     lastName: lastName || undefined,
     curp: curp || undefined,
   });
+
+  useEffect(() => {
+    if (isAxiosError(error)) {
+      errorToast(
+        `Error al buscar beneficiarios, intente mas tarde`,
+        `${error.status}: ${error.message}`,
+      );
+    }
+  }, [error]);
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);

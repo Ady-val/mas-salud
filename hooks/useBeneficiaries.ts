@@ -9,5 +9,6 @@ export const useBeneficiaries = (params: UseBeneficiariesParams) => {
     queryFn: () => fetchBeneficiaries(params),
     placeholderData: keepPreviousData,
     staleTime: 5000,
+    retry: 3,
   });
 };

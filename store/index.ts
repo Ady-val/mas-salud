@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 
 import filtersReducer from './slices/beneficiaryFilterSlice';
+import errorReducer from './slices/errorSlice';
 
 export const store = configureStore({
   reducer: {
     filters: filtersReducer,
+    error: errorReducer,
   },
 });
 
