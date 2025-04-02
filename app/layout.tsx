@@ -2,10 +2,9 @@ import '@/styles/globals.css';
 import { Metadata, Viewport } from 'next';
 import clsx from 'clsx';
 
-import { Providers } from './providers';
-
 import { siteConfig } from '@/config/site';
 import { fontRoboto } from '@/config/fonts';
+import { Providers } from '@/providers/providers';
 
 export const metadata: Metadata = {
   title: {
@@ -35,7 +34,7 @@ export default function RootLayout({
       <head />
       <body
         className={clsx(
-          'min-h-screen bg-background font-sans antialiased',
+          'flex-1 h-screen min-h-[15rem] overflow-auto bg-main font-sans antialiased',
           // fontRoboto.variable,
         )}
       >

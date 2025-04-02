@@ -1,21 +1,23 @@
-import { Input as HeroInput, InputProps } from "@heroui/input";
+'use client";';
+
+import { Input as HeroInput, InputProps } from '@heroui/input';
 
 export default function Input({
   label,
-  type = "text",
+  type = 'text',
   placeholder,
   className,
   ...props
 }: InputProps) {
   return (
-    <div className="input-form">
+    <div className='input-form'>
       <HeroInput
         className={`${className}`}
-        label={<div className="text-content-card">{label}</div>}
-        labelPlacement="outside"
+        label={<div className='text-content-card'>{label}</div>}
+        labelPlacement='outside'
         placeholder={placeholder}
         type={type}
-        variant="underlined"
+        variant='underlined'
         {...props}
       />
     </div>

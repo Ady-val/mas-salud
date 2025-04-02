@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 
 import { CardBody as AtomCardBody } from '@/components/atoms';
