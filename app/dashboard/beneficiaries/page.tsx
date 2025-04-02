@@ -3,7 +3,7 @@
 import React from 'react';
 
 import {
-  BeneficiariesData,
+  Beneficiaries,
   DashboardFooter,
   DashboardHeader,
   DashboardMainLayout,
@@ -15,10 +15,7 @@ const BeneficiariesPage: React.FC = () => {
       header={<DashboardHeader title='Beneficiarios' />}
       footer={<DashboardFooter text='Institución: DIF' />}
     >
-      <>
-        <div>Beneficiarios</div>
-        <BeneficiariesData />
-      </>
+      <Beneficiaries />
     </DashboardMainLayout>
   );
 };
