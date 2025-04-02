@@ -16,12 +16,16 @@ export const testDataHeaders: TTestDataHeaders[] = [
     label: 'Nombre',
   },
   {
-    key: 'role',
-    label: 'Rol',
+    key: 'lastName',
+    label: 'Apellido Paterno',
   },
   {
-    key: 'status',
-    label: 'Status',
+    key: 'secondLastName',
+    label: 'Apellido Materno',
+  },
+  {
+    key: 'curp',
+    label: 'CURP',
   },
 ];
 

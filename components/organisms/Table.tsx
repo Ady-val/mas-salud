@@ -62,7 +62,8 @@ const SimpleTable: React.FC<TableProps> = ({
   return (
     <div className='flex flex-col gap-3'>
       <Table
-        aria-label='Controlled table example with dynamic content'
+        isStriped
+        aria-label='Controlled table'
         selectedKeys={selectedKeys}
         selectionMode='single'
         onSelectionChange={handleSelectionChange}

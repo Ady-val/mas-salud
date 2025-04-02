@@ -5,7 +5,6 @@ import axios from 'axios';
 const axiosInstance = axios.create({
   baseURL: 'http://localhost:4000',
   withCredentials: true,
-  // baseURL: 'https://tu-api.com/api',
 });
 
 axiosInstance.interceptors.request.use(
@@ -14,6 +13,8 @@ axiosInstance.interceptors.request.use(
   },
   (error) => Promise.reject(error),
 );
+
+export default axiosInstance;
 
 // axiosInstance.interceptors.response.use(
 //   (response) => response,
@@ -31,5 +32,3 @@ axiosInstance.interceptors.request.use(
 //     return Promise.reject(error);
 //   },
 // );
-
-export default axiosInstance;

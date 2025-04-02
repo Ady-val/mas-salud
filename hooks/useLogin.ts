@@ -2,9 +2,9 @@
 
 import { useMutation } from '@tanstack/react-query';
 import { isAxiosError } from 'axios';
-
-import axiosInstance from '@/lib/Axios';
 import { useRouter } from 'next/navigation';
+
+import axiosInstance from '@/lib/apiClient/Axios';
 
 interface LoginRequest {
   username: string;
