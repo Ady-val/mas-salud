@@ -11,7 +11,7 @@ import { RootState } from '@/store';
 import { useDebounce } from '@/hooks/useDebounce';
 import { useToast } from '@/hooks/useToast';
 
-const ROWS_PER_PAGE = 10;
+const ROWS_PER_PAGE = 15;
 
 const BeneficiariesData: React.FC = () => {
   const { errorToast } = useToast();

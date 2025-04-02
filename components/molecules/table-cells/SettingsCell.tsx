@@ -1,4 +1,4 @@
-import { FaEye, FaPenToSquare, FaTrash } from 'react-icons/fa6';
+import { DeleteChip, EditChip, ViewChip } from '../chips';
 
 export const SettingsCell = (
   value: string,
@@ -8,16 +8,10 @@ export const SettingsCell = (
 ): React.ReactNode => {
   return (
     <div className='w-full flex items-center justify-end'>
-      <div className='w-fit h-12 flex gap-2'>
-        <button onClick={() => onView(value)}>
-          <FaEye className='text-2xl text-primary' />
-        </button>
-        <button onClick={() => onEdit(value)}>
-          <FaPenToSquare className='text-2xl text-yellow-300' />
-        </button>
-        <button onClick={() => onDelete(value)}>
-          <FaTrash className='text-2xl text-red-500' />
-        </button>
+      <div className='w-fit flex gap-2'>
+        <ViewChip onClick={() => onView(value)} />
+        <EditChip onClick={() => onEdit(value)} />
+        <DeleteChip onClick={() => onDelete(value)} />
       </div>
     </div>
   );
