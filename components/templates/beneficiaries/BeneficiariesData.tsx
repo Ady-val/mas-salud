@@ -28,9 +28,25 @@ const BeneficiariesData: React.FC = () => {
     console.log('Selected item:', item);
   };
 
+  const onView = (value: string) => {
+    console.log('View:', value);
+  };
+
+  const onEdit = (value: string) => {
+    console.log('Edit:', value);
+  };
+
+  const onDelete = (value: string) => {
+    console.log('Delete:', value);
+  };
+
   return (
     <SimpleTable
-      headers={HBeneficiaries}
+      headers={HBeneficiaries({
+        onView,
+        onEdit,
+        onDelete,
+      })}
       data={fetchedData?.data || []}
       count={fetchedData?.count || 0}
       rowsPerPage={ROWS_PER_PAGE}

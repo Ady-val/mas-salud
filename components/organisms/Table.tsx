@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { SharedSelection } from '@heroui/system';
 
 import {
@@ -15,21 +15,8 @@ import {
   getKeyValue,
 } from '../atoms';
 
-type Item = Record<string, any>;
-
-interface TableProps {
-  headers: {
-    key: string;
-    label: string;
-  }[];
-  data: Array<Item>;
-  count: number;
-  rowsPerPage: number;
-  currentPage?: number;
-  isLoading?: boolean;
-  onPageChange: (page: number) => void;
-  onSelectionChange: (item: Item) => void;
-}
+import { TableProps } from '@/interfaces/table';
+import { Item } from '@/types/table';
 
 const SimpleTable: React.FC<TableProps> = ({
   headers,
@@ -44,6 +31,20 @@ const SimpleTable: React.FC<TableProps> = ({
   const [selectedKeys, setSelectedKeys] = useState<SharedSelection>(new Set());
   const [page, setPage] = React.useState(currentPage);
   const pages = Math.ceil(count / rowsPerPage);
+
+  const renderCell = useCallback(
+    (menuItem: Item, columnKey: string | number) => {
+      const cellValue = getKeyValue(menuItem, columnKey);
+      const header = headers.find((header) => header.key === columnKey);
+
+      if (header?.cell) {
+        return header.cell(cellValue, menuItem);
+      }
+
+      return cellValue;
+    },
+    [],
+  );
 
   const handleSelectionChange = (keys: SharedSelection) => {
     setSelectedKeys(keys);
@@ -62,7 +63,6 @@ const SimpleTable: React.FC<TableProps> = ({
   return (
     <div className='flex flex-col gap-3'>
       <Table
-        isStriped
         aria-label='Controlled table'
         selectedKeys={selectedKeys}
         selectionMode='single'
@@ -85,7 +85,9 @@ const SimpleTable: React.FC<TableProps> = ({
       >
         <TableHeader columns={headers}>
           {(column) => (
-            <TableColumn key={column.key}>{column.label}</TableColumn>
+            <TableColumn key={column.key} {...column.props}>
+              {column.label}
+            </TableColumn>
           )}
         </TableHeader>
         <TableBody
@@ -97,7 +99,9 @@ const SimpleTable: React.FC<TableProps> = ({
           {(item) => (
             <TableRow key={item.key}>
               {(columnKey) => (
-                <TableCell>{getKeyValue(item, columnKey)}</TableCell>
+                <TableCell className='px-1 py-0.5'>
+                  {renderCell(item, columnKey)}
+                </TableCell>
               )}
             </TableRow>
           )}

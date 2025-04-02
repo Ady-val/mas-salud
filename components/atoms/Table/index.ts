@@ -7,4 +7,5 @@ export {
   TableCell,
   getKeyValue,
 } from '@heroui/table';
+export type { TableColumnProps } from '@heroui/table';
 export { Pagination } from '@heroui/pagination';
