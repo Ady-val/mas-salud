@@ -54,3 +54,8 @@
   /* text-content-card */
   rounded-lg px-2 py-1 gap-1;
 }
+
+.base-modal {
+  @apply
+  bg-primary
+}

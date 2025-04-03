@@ -8,3 +8,4 @@ export * from './containers';
 export * from './Table';
 export * from './Spinners';
 export * from './Tooltips';
+export * from './Modals';

@@ -12,6 +12,8 @@ import { ToastProvider } from '@heroui/toast';
 import QueryProvider from './QueryProvider';
 
 import { store } from '@/store';
+import { ModalProvider } from '@/context/ModalContext';
+import { LoadingProvider } from '@/context/LoadingContext';
 
 export interface ProvidersProps {
   children: React.ReactNode;
@@ -34,8 +36,12 @@ export function Providers({ children, themeProps }: ProvidersProps) {
       <HeroUIProvider navigate={router.push}>
         <QueryProvider>
           <NextThemesProvider {...themeProps}>
-            <ToastProvider placement='top-center' />
-            {children}
+            <ModalProvider>
+              <LoadingProvider>
+                <ToastProvider placement='top-center' />
+                {children}
+              </LoadingProvider>
+            </ModalProvider>
           </NextThemesProvider>
         </QueryProvider>
       </HeroUIProvider>

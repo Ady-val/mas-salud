@@ -5,6 +5,7 @@ import clsx from 'clsx';
 import { siteConfig } from '@/config/site';
 import { fontRoboto } from '@/config/fonts';
 import { Providers } from '@/providers/providers';
+import { BaseModal } from '@/components/organisms';
 
 export const metadata: Metadata = {
   title: {
@@ -40,6 +41,7 @@ export default function RootLayout({
       >
         <Providers themeProps={{ attribute: 'class', defaultTheme: 'light' }}>
           {children}
+          <BaseModal />
         </Providers>
       </body>
     </html>
