@@ -8,14 +8,15 @@ export interface UseBeneficiariesParams {
 }
 
 export interface IBeneficiary {
-  firstName: string;
+  name: string;
   lastName: string;
   secondLastName: string;
   curp: string;
   phone: string;
+  gender: string;
   street: string;
-  exteriorNumber: string;
-  interiorNumber?: string | undefined;
-  neighborhood: string;
+  externalNumber: string;
+  internalNumber?: string | undefined;
+  colony: string;
   postalCode: string;
 }

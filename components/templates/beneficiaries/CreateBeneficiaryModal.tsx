@@ -14,8 +14,10 @@ import {
   ModalInput,
 } from '@/components/atoms';
 import { IBeneficiary } from '@/interfaces/beneficiaries';
-import { useEffect } from 'react';
 import { useLoading } from '@/context/LoadingContext';
+import { useNewBeneficiary } from '@/hooks/useNewBeneficiary';
+import { SimpleSelect } from '@/components/molecules';
+import { isAxiosError } from 'axios';
 
 interface EditUserModalProps {
   onSave: () => void;
@@ -23,7 +25,7 @@ interface EditUserModalProps {
 
 const schema: yup.ObjectSchema<IBeneficiary> = yup
   .object({
-    firstName: yup
+    name: yup
       .string()
       .required('El nombre es requerido')
       .max(50, 'El nombre no puede tener más de 50 caracteres'),
@@ -43,10 +45,12 @@ const schema: yup.ObjectSchema<IBeneficiary> = yup
       .string()
       .required('El teléfono es requerido')
       .matches(/^\d{10}$/, 'El teléfono debe contener exactamente 10 números'),
+    gender: yup.string(),
+    // gender: yup.string().required('El género es requerido'),
     street: yup.string().required('La calle es requerida'),
-    exteriorNumber: yup.string().required('El número exterior es requerido'),
-    interiorNumber: yup.string().optional(),
-    neighborhood: yup.string().required('La colonia es requerida'),
+    externalNumber: yup.string().required('El número exterior es requerido'),
+    internalNumber: yup.string().optional(),
+    colony: yup.string().required('La colonia es requerida'),
     postalCode: yup
       .string()
       .required('El código postal es requerido')
@@ -59,10 +63,12 @@ const schema: yup.ObjectSchema<IBeneficiary> = yup
 
 const CreateBeneficiaryModal = ({ onSave }: EditUserModalProps) => {
   const { closeModal } = useModal();
-  const { showLoading } = useLoading();
+  const { showLoading, hideLoading } = useLoading();
   const {
     register,
     handleSubmit,
+    setValue,
+    setError,
     formState: { errors },
   } = useForm<IBeneficiary>({
     resolver: yupResolver(schema),
@@ -70,13 +76,33 @@ const CreateBeneficiaryModal = ({ onSave }: EditUserModalProps) => {
     reValidateMode: 'onBlur',
     shouldFocusError: true,
   });
-
-  useEffect(() => {
-    showLoading();
-  }, [showLoading]);
+  const mutation = useNewBeneficiary();
 
   const handleSave = (data: IBeneficiary) => {
     console.log('Data:', data);
+    showLoading();
+    mutation.mutate(data, {
+      onError: (error) => {
+        if (isAxiosError(error)) {
+          if (Array.isArray(error?.response?.data?.message)) {
+            error?.response?.data?.message.forEach((err: object) => {
+              setError(err.field, { type: 'custom', message: err.error });
+            });
+          }
+          console.error('Axios Error:', error?.response?.data);
+        } else {
+          console.error('Unexpected Error:', error.message);
+        }
+        hideLoading();
+      },
+      onSuccess: (success) => {
+        console.log('Success:', success);
+      },
+      onSettled: () => {
+        hideLoading();
+        // closeModal();
+      },
+    });
     // onSave();
     // closeModal();
   };
@@ -91,9 +117,9 @@ const CreateBeneficiaryModal = ({ onSave }: EditUserModalProps) => {
               isRequired
               label='Nombre/s'
               placeholder='Nombre del beneficiario'
-              {...register('firstName')}
-              isInvalid={!!errors.firstName}
-              errorMessage={errors.firstName?.message}
+              {...register('name')}
+              isInvalid={!!errors.name}
+              errorMessage={errors.name?.message}
             />
             <ModalInput
               isRequired
@@ -130,6 +156,27 @@ const CreateBeneficiaryModal = ({ onSave }: EditUserModalProps) => {
               isInvalid={!!errors.phone}
               errorMessage={errors.phone?.message}
             />
+            <SimpleSelect
+              label='Género'
+              placeholder='Género del beneficiario'
+              options={[
+                {
+                  key: 'Male',
+                  label: 'Masculino',
+                  value: 'Male',
+                },
+                {
+                  key: 'Female',
+                  label: 'Femenino',
+                  value: 'Female',
+                },
+              ]}
+              onChange={({ target }) => {
+                setValue('gender', target.value);
+              }}
+              isInvalid={!!errors.gender}
+              errorMessage={errors.gender?.message}
+            />
           </div>
           <div className='grid grid-cols-4 gap-4'>
             <ModalInput
@@ -146,26 +193,26 @@ const CreateBeneficiaryModal = ({ onSave }: EditUserModalProps) => {
               label='Número Exterior'
               placeholder='Num Ext domicilio'
               className='col-span-1'
-              {...register('exteriorNumber')}
-              isInvalid={!!errors.exteriorNumber}
-              errorMessage={errors.exteriorNumber?.message}
+              {...register('externalNumber')}
+              isInvalid={!!errors.externalNumber}
+              errorMessage={errors.externalNumber?.message}
             />
             <ModalInput
               label='Número Interior'
               placeholder='Num Int domicilio'
               className='col-span-1'
-              {...register('interiorNumber')}
-              isInvalid={!!errors.interiorNumber}
-              errorMessage={errors.interiorNumber?.message}
+              {...register('internalNumber')}
+              isInvalid={!!errors.internalNumber}
+              errorMessage={errors.internalNumber?.message}
             />
             <ModalInput
               isRequired
               label='Colonia'
               placeholder='Colonia de domicilio'
               className='col-span-2'
-              {...register('neighborhood')}
-              isInvalid={!!errors.neighborhood}
-              errorMessage={errors.neighborhood?.message}
+              {...register('colony')}
+              isInvalid={!!errors.colony}
+              errorMessage={errors.colony?.message}
             />
             <ModalInput
               isRequired

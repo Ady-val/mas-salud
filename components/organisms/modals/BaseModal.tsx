@@ -16,6 +16,7 @@ export default function BaseModal() {
         backdrop:
           'bg-gradient-to-t from-button-primary/20 to-button-primary/10 backdrop-opacity-20',
       }}
+      placement='top'
       motionProps={{
         variants: {
           enter: {
