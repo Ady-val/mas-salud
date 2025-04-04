@@ -1,5 +1,6 @@
 import Image, { StaticImageData } from 'next/image';
 import React from 'react';
+import imga from '@/public/massalud.png';
 
 interface ImageContainerProps {
   img: StaticImageData;
@@ -14,7 +15,7 @@ const ImageContainer: React.FC<ImageContainerProps> = ({
 }) => {
   return (
     <div className={`relative w-full h-full ${className}`}>
-      <Image src={img} alt={alt} fill style={{ objectFit: 'contain' }} />
+      <Image src={imga} alt={alt} fill style={{ objectFit: 'contain' }} />
     </div>
   );
 };

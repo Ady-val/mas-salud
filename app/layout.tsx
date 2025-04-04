@@ -32,11 +32,11 @@ export default function RootLayout({
 }) {
   return (
     <html suppressHydrationWarning lang='en'>
-      <head />
+      <head />3
       <body
         className={clsx(
-          'flex-1 h-screen min-h-[15rem] overflow-auto bg-main font-sans antialiased',
-          // fontRoboto.variable,
+          'flex-1 h-screen min-h-[15rem] overflow-auto bg-main antialiased font-roboto',
+          fontRoboto.variable,
         )}
       >
         <Providers themeProps={{ attribute: 'class', defaultTheme: 'light' }}>

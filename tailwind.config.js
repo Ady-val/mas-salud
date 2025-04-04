@@ -9,6 +9,10 @@ const config = {
   ],
   theme: {
     extend: {
+      boxShadow: {
+        'inner-md': 'inset 0 4px 6px rgba(0,0,0,0.1)',
+        'inner-lg-left-top': 'inset 8px 0.5px 6px -8px rgba(0,0,0,1)',
+      },
       fontFamily: {
         sans: ["var(--font-sans)"],
         mono: ["var(--font-mono)"],

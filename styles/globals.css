@@ -2,13 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-/* @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap'); */
-
-* {
+/* * {
   font-family: sans-serif;
-  /* font-family: 'Roboto', sans-serif; */
-}
+} */
 
 /* .raleway {
   font-family: 'Raleway', sans-serif;
@@ -19,7 +15,12 @@
 }
 
 .navlink-component {
-  @apply h-14 w-full text-2xl text-main pl-4;
+  @apply
+  h-14
+  w-full
+  text-2xl
+  text-main
+  pl-4;
 }
 
 .navlink-item {
@@ -31,7 +32,11 @@
 }
 
 .navlink-item-active {
-  @apply bg-main text-primary hover:bg-main;
+  @apply
+  bg-main
+  text-primary
+  hover:bg-main
+  shadow-inner-lg-left-top
 }
 
 .main-background {

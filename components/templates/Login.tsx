@@ -2,12 +2,14 @@
 
 import React, { useEffect, useState } from 'react';
 import { isAxiosError } from 'axios';
-import { redirect } from 'next/navigation';
+
+import { ImageContainer } from '../atoms';
 
 import { AuthForm } from '@/components/organisms';
 import { useLogin } from '@/hooks/useLogin';
 import { formatErrorMessage } from '@/helpers/DataFormat';
 import { translateRequestErrorMessages } from '@/constants/errorMessages';
+import img from '@/public/massalud.png';
 
 const Login: React.FC = () => {
   const [username, setUsername] = useState('');
@@ -45,16 +47,23 @@ const Login: React.FC = () => {
   }, [isError, error]);
 
   return (
-    <AuthForm
-      username={username}
-      password={password}
-      onChangeUsername={(e) => setUsername(e.target.value)}
-      onChangePassword={(e) => setPassword(e.target.value)}
-      isLoading={isLoading}
-      onClick={handleLogin}
-      isInvalid={isInvalid}
-      errorMessage={errorMessage}
-    />
+    <div className='w-full h-full flex flex-col items-center justify-start'>
+      <div className='w-full h-1/3'>
+        <div className='h-[17rem] w-full flex justify-center items-center p-5'>
+          <ImageContainer img={img} alt='mas salud logo' />
+        </div>
+      </div>
+      <AuthForm
+        username={username}
+        password={password}
+        onChangeUsername={(e) => setUsername(e.target.value)}
+        onChangePassword={(e) => setPassword(e.target.value)}
+        isLoading={isLoading}
+        onClick={handleLogin}
+        isInvalid={isInvalid}
+        errorMessage={errorMessage}
+      />
+    </div>
   );
 };
 
