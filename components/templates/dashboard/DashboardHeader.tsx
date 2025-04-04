@@ -8,9 +8,7 @@ interface MainHeaderProps {
 const DashboardHeader: React.FC<MainHeaderProps> = ({ title, button }) => {
   return (
     <div className='h-full flex items-center justify-between'>
-      <div className='text-primary font-extrabold text-3xl raleway'>
-        {title}
-      </div>
+      <div className='header-title'>{title}</div>
       {button && button}
     </div>
   );

@@ -3,7 +3,7 @@ import { Metadata, Viewport } from 'next';
 import clsx from 'clsx';
 
 import { siteConfig } from '@/config/site';
-import { fontRoboto } from '@/config/fonts';
+import { fontRaleway, fontRoboto } from '@/config/fonts';
 import { Providers } from '@/providers/providers';
 import { BaseModal } from '@/components/organisms';
 
@@ -32,11 +32,12 @@ export default function RootLayout({
 }) {
   return (
     <html suppressHydrationWarning lang='en'>
-      <head />3
+      <head />
       <body
         className={clsx(
           'flex-1 h-screen min-h-[15rem] overflow-auto bg-main antialiased font-roboto',
           fontRoboto.variable,
+          fontRaleway.variable,
         )}
       >
         <Providers themeProps={{ attribute: 'class', defaultTheme: 'light' }}>

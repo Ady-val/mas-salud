@@ -17,6 +17,7 @@ const config = {
         sans: ["var(--font-sans)"],
         mono: ["var(--font-mono)"],
         roboto: ["var(--font-roboto)"],
+        raleway: ["var(--font-rale-way)"],
       },
       colors: {
         main: '#e5e7e9',

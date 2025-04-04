@@ -64,3 +64,19 @@
   @apply
   bg-primary
 }
+
+.header-title {
+  @apply
+  text-primary
+  font-bold
+  text-3xl
+  font-raleway
+}
+
+.header-subtitle {
+  @apply
+  text-primary
+  font-bold
+  text-2xl
+  font-raleway
+}
