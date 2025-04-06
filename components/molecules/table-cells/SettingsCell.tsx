@@ -1,10 +1,10 @@
 import { DeleteChip, EditChip, ViewChip } from '../chips';
 
 export const SettingsCell = (
-  value: string,
-  onView: (value: string) => void,
-  onEdit: (value: string) => void,
-  onDelete: (value: string) => void,
+  value: any,
+  onView: (value: any) => void,
+  onEdit: (value: any) => void,
+  onDelete: (value: any) => void,
 ): React.ReactNode => {
   return (
     <div className='w-full flex items-center justify-end'>

@@ -3,7 +3,7 @@ import React from 'react';
 import {
   BeneficiariesData,
   BeneficiariesFilters,
-  CreateBeneficiaryModal,
+  BeneficiaryFormModal,
 } from '.';
 
 import { useModal } from '@/context/ModalContext';
@@ -13,13 +13,7 @@ const Beneficiaries: React.FC = () => {
   const { openModal } = useModal();
 
   const handleOpenModal = () => {
-    openModal(
-      <CreateBeneficiaryModal
-        onSave={() => {
-          // Handle save action here
-        }}
-      />,
-    );
+    openModal(<BeneficiaryFormModal />);
   };
 
   return (

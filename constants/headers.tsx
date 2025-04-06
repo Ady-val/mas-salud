@@ -52,7 +52,7 @@ export const HBeneficiaries = ({
         // minWidth: '100px',
         className: 'w-[5rem]',
       },
-      cell: (value, _item) => SettingsCell(value, onView, onEdit, onDelete),
+      cell: (_value, item) => SettingsCell(item, onView, onEdit, onDelete),
     },
   ];
 };

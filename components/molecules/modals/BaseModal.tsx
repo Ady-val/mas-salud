@@ -1,6 +1,6 @@
 'use client';
 
-import { Modal, ModalContent } from '../../atoms';
+import { Modal } from '../../atoms';
 
 import { useModal } from '@/context/ModalContext';
 

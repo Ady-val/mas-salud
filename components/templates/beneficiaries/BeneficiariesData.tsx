@@ -4,16 +4,22 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { isAxiosError } from 'axios';
 
+import BeneficiaryFormModal from './BeneficiaryFormModal';
+import BeneficiaryDeleteAlertModal from './BeneficiaryDeleteAlertModal';
+
 import { SimpleTable } from '@/components/organisms';
 import { useBeneficiaries } from '@/hooks/useBeneficiaries';
 import { HBeneficiaries } from '@/constants/headers';
 import { RootState } from '@/store';
 import { useDebounce } from '@/hooks/useDebounce';
 import { useToast } from '@/hooks/useToast';
+import { useModal } from '@/context/ModalContext';
+import { IBeneficiary } from '@/interfaces/beneficiaries';
 
 const ROWS_PER_PAGE = 15;
 
 const BeneficiariesData: React.FC = () => {
+  const { openModal } = useModal();
   const { errorToast } = useToast();
   const [currentPage, setCurrentPage] = useState(1);
   const filters = useSelector((state: RootState) => state.filters);
@@ -57,16 +63,18 @@ const BeneficiariesData: React.FC = () => {
     console.log('Selected item:', item);
   };
 
-  const onView = (value: string) => {
-    console.log('View:', value);
+  const onView = (value: any) => {
+    openModal(
+      <BeneficiaryFormModal onlyView={true} obj={value as IBeneficiary} />,
+    );
   };
 
-  const onEdit = (value: string) => {
-    console.log('Edit:', value);
+  const onEdit = (value: any) => {
+    openModal(<BeneficiaryFormModal obj={value as IBeneficiary} />);
   };
 
-  const onDelete = (value: string) => {
-    console.log('Delete:', value);
+  const onDelete = (value: any) => {
+    openModal(<BeneficiaryDeleteAlertModal obj={value as IBeneficiary} />);
   };
 
   return (

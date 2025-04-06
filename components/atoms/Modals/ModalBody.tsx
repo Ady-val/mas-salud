@@ -3,6 +3,8 @@ import { ReactNode } from 'react';
 
 export default function ModalBody({ children }: { children: ReactNode }) {
   return (
-    <HerouiModalBody className='mt-4 mb-2 gap-10'>{children}</HerouiModalBody>
+    <HerouiModalBody className='mt-4 mb-2 gap-10 text-white'>
+      {children}
+    </HerouiModalBody>
   );
 }

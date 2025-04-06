@@ -2,7 +2,7 @@
 
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
+import { useQueryClient } from '@tanstack/react-query';
 
 import { useModal } from '@/context/ModalContext';
 import {
@@ -15,53 +15,19 @@ import {
 } from '@/components/atoms';
 import { IBeneficiary } from '@/interfaces/beneficiaries';
 import { useLoading } from '@/context/LoadingContext';
-import { useNewBeneficiary } from '@/hooks/useNewBeneficiary';
+import { useBeneficiaryMutation } from '@/hooks/useBeneficiaryMutate';
 import { SimpleSelect } from '@/components/molecules';
-import { isAxiosError } from 'axios';
+import { useToast } from '@/hooks/useToast';
+import { QUERY_KEYS } from '@/constants/queryKeys';
+import { beneficiarySchema } from '@/schemas/beneficiarySchema';
+import { FormalModalProps } from '@/interfaces/formModalProps';
+import { errorFormat } from '@/helpers/errorFormt';
 
-interface EditUserModalProps {
-  onSave: () => void;
-}
-
-const schema: yup.ObjectSchema<IBeneficiary> = yup
-  .object({
-    name: yup
-      .string()
-      .required('El nombre es requerido')
-      .max(50, 'El nombre no puede tener más de 50 caracteres'),
-    lastName: yup
-      .string()
-      .required('El apellido es requerido')
-      .max(50, 'El apellido no puede tener más de 50 caracteres'),
-    secondLastName: yup
-      .string()
-      .required('El segundo apellido es requerido')
-      .max(50, 'El segundo apellido no puede tener más de 50 caracteres'),
-    curp: yup
-      .string()
-      .required('La CURP es requerida')
-      .length(18, 'La CURP debe contener exactamente 18 caracteres'),
-    phone: yup
-      .string()
-      .required('El teléfono es requerido')
-      .matches(/^\d{10}$/, 'El teléfono debe contener exactamente 10 números'),
-    gender: yup.string(),
-    // gender: yup.string().required('El género es requerido'),
-    street: yup.string().required('La calle es requerida'),
-    externalNumber: yup.string().required('El número exterior es requerido'),
-    internalNumber: yup.string().optional(),
-    colony: yup.string().required('La colonia es requerida'),
-    postalCode: yup
-      .string()
-      .required('El código postal es requerido')
-      .matches(
-        /^\d{5}$/,
-        'El código postal debe contener exactamente 5 números',
-      ),
-  })
-  .required();
-
-const CreateBeneficiaryModal = ({ onSave }: EditUserModalProps) => {
+const BeneficiaryFormModal = ({
+  onlyView,
+  obj,
+}: FormalModalProps<IBeneficiary>) => {
+  const { errorToast, successToast } = useToast();
   const { closeModal } = useModal();
   const { showLoading, hideLoading } = useLoading();
   const {
@@ -71,40 +37,46 @@ const CreateBeneficiaryModal = ({ onSave }: EditUserModalProps) => {
     setError,
     formState: { errors },
   } = useForm<IBeneficiary>({
-    resolver: yupResolver(schema),
+    resolver: yupResolver(beneficiarySchema),
+    defaultValues: { ...obj },
     mode: 'onBlur',
     reValidateMode: 'onBlur',
     shouldFocusError: true,
   });
-  const mutation = useNewBeneficiary();
+  const mutation = useBeneficiaryMutation();
+  const queryClient = useQueryClient();
 
   const handleSave = (data: IBeneficiary) => {
-    console.log('Data:', data);
     showLoading();
-    mutation.mutate(data, {
-      onError: (error) => {
-        if (isAxiosError(error)) {
-          if (Array.isArray(error?.response?.data?.message)) {
-            error?.response?.data?.message.forEach((err: object) => {
-              setError(err.field, { type: 'custom', message: err.error });
-            });
-          }
-          console.error('Axios Error:', error?.response?.data);
-        } else {
-          console.error('Unexpected Error:', error.message);
-        }
-        hideLoading();
+    mutation.mutate(
+      {
+        ...(obj?.id ? { id: obj.id } : {}),
+        ...data,
       },
-      onSuccess: (success) => {
-        console.log('Success:', success);
+      {
+        onError: (error) => {
+          const formatedError = errorFormat(error);
+
+          formatedError.forEach((err: { field: string; error: string }) =>
+            setError(err.field as keyof IBeneficiary, {
+              type: 'server',
+              message: err.error,
+            }),
+          );
+          errorToast('Error', formatedError[0].error);
+        },
+        onSuccess: () => {
+          successToast('Beneficiario guardado correctamente.');
+          queryClient.invalidateQueries({
+            queryKey: [QUERY_KEYS.BENEFICIARIES],
+          });
+          closeModal();
+        },
+        onSettled: () => {
+          hideLoading();
+        },
       },
-      onSettled: () => {
-        hideLoading();
-        // closeModal();
-      },
-    });
-    // onSave();
-    // closeModal();
+    );
   };
 
   return (
@@ -114,6 +86,7 @@ const CreateBeneficiaryModal = ({ onSave }: EditUserModalProps) => {
         <ModalBody>
           <div className='grid grid-cols-3 gap-4'>
             <ModalInput
+              isReadOnly={onlyView}
               isRequired
               label='Nombre/s'
               placeholder='Nombre del beneficiario'
@@ -122,6 +95,7 @@ const CreateBeneficiaryModal = ({ onSave }: EditUserModalProps) => {
               errorMessage={errors.name?.message}
             />
             <ModalInput
+              isReadOnly={onlyView}
               isRequired
               label='Apellido Paterno'
               placeholder='Apellido Paterno del beneficiario'
@@ -130,6 +104,7 @@ const CreateBeneficiaryModal = ({ onSave }: EditUserModalProps) => {
               errorMessage={errors.lastName?.message}
             />
             <ModalInput
+              isReadOnly={onlyView}
               isRequired
               label='Apellido Materno'
               placeholder='Apellido Materno del beneficiario'
@@ -140,6 +115,7 @@ const CreateBeneficiaryModal = ({ onSave }: EditUserModalProps) => {
           </div>
           <div className='grid grid-cols-3 gap-4'>
             <ModalInput
+              isReadOnly={onlyView}
               isRequired
               label='CURP'
               placeholder='CURP del beneficiario'
@@ -149,6 +125,7 @@ const CreateBeneficiaryModal = ({ onSave }: EditUserModalProps) => {
               errorMessage={errors.curp?.message}
             />
             <ModalInput
+              isReadOnly={onlyView}
               isRequired
               label='Teléfono'
               placeholder='Teléfono del beneficiario'
@@ -157,8 +134,10 @@ const CreateBeneficiaryModal = ({ onSave }: EditUserModalProps) => {
               errorMessage={errors.phone?.message}
             />
             <SimpleSelect
+              isDisabled={onlyView}
               label='Género'
               placeholder='Género del beneficiario'
+              defaultSelectedKeys={[obj?.gender as string]}
               options={[
                 {
                   key: 'Male',
@@ -180,6 +159,7 @@ const CreateBeneficiaryModal = ({ onSave }: EditUserModalProps) => {
           </div>
           <div className='grid grid-cols-4 gap-4'>
             <ModalInput
+              isReadOnly={onlyView}
               isRequired
               label='Calle'
               placeholder='Calle de domicilio'
@@ -189,6 +169,7 @@ const CreateBeneficiaryModal = ({ onSave }: EditUserModalProps) => {
               errorMessage={errors.street?.message}
             />
             <ModalInput
+              isReadOnly={onlyView}
               isRequired
               label='Número Exterior'
               placeholder='Num Ext domicilio'
@@ -198,6 +179,7 @@ const CreateBeneficiaryModal = ({ onSave }: EditUserModalProps) => {
               errorMessage={errors.externalNumber?.message}
             />
             <ModalInput
+              isReadOnly={onlyView}
               label='Número Interior'
               placeholder='Num Int domicilio'
               className='col-span-1'
@@ -206,6 +188,7 @@ const CreateBeneficiaryModal = ({ onSave }: EditUserModalProps) => {
               errorMessage={errors.internalNumber?.message}
             />
             <ModalInput
+              isReadOnly={onlyView}
               isRequired
               label='Colonia'
               placeholder='Colonia de domicilio'
@@ -215,6 +198,7 @@ const CreateBeneficiaryModal = ({ onSave }: EditUserModalProps) => {
               errorMessage={errors.colony?.message}
             />
             <ModalInput
+              isReadOnly={onlyView}
               isRequired
               label='Código Postal'
               placeholder='Código Postal de domicilio'
@@ -226,17 +210,18 @@ const CreateBeneficiaryModal = ({ onSave }: EditUserModalProps) => {
           </div>
         </ModalBody>
         <ModalFooter>
-          <ModalButton text='Cancelar' color='secondary' onClick={closeModal} />
           <ModalButton
-            type='submit'
-            text='Guardar'
-            color='success'
-            className='text-content-secondary'
+            text={onlyView ? 'Cerrar' : 'Cancelar'}
+            color='secondary'
+            onClick={closeModal}
           />
+          {!onlyView && (
+            <ModalButton text='Guardar' color='success' type='submit' />
+          )}
         </ModalFooter>
       </form>
     </ModalContent>
   );
 };
 
-export default CreateBeneficiaryModal;
+export default BeneficiaryFormModal;

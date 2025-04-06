@@ -8,6 +8,7 @@ export interface UseBeneficiariesParams {
 }
 
 export interface IBeneficiary {
+  id?: string;
   name: string;
   lastName: string;
   secondLastName: string;
@@ -16,7 +17,7 @@ export interface IBeneficiary {
   gender: string;
   street: string;
   externalNumber: string;
-  internalNumber?: string | undefined;
+  internalNumber?: string | null;
   colony: string;
   postalCode: string;
 }

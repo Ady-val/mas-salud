@@ -5,7 +5,7 @@ import clsx from 'clsx';
 import { siteConfig } from '@/config/site';
 import { fontRaleway, fontRoboto } from '@/config/fonts';
 import { Providers } from '@/providers/providers';
-import { BaseModal } from '@/components/organisms';
+import { BaseModal } from '@/components/molecules';
 
 export const metadata: Metadata = {
   title: {

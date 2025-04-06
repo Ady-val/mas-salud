@@ -15,3 +15,15 @@ export const createBeneficiary = async (data: IBeneficiary) => {
 
   return response.data;
 };
+
+export const updateBeneficiary = async (data: IBeneficiary) => {
+  const response = await axiosInstance.patch(`/beneficiaries/${data.id}`, data);
+
+  return response.data;
+};
+
+export const deleteBeneficiary = async (id: string) => {
+  const response = await axiosInstance.delete(`/beneficiaries/${id}`);
+
+  return response.data;
+};

@@ -46,13 +46,13 @@ const SimpleTable: React.FC<TableProps> = ({
     [],
   );
 
-  const handleSelectionChange = (keys: SharedSelection) => {
-    setSelectedKeys(keys);
-    const selectedKey = Array.from(keys)[0];
-    const selectedItem = data.find((item) => item.key === selectedKey);
+  // const handleSelectionChange = (keys: SharedSelection) => {
+  //   setSelectedKeys(keys);
+  //   const selectedKey = Array.from(keys)[0];
+  //   const selectedItem = data.find((item) => item.key === selectedKey);
 
-    if (selectedItem) onSelectionChange(selectedItem);
-  };
+  //   if (selectedItem) onSelectionChange(selectedItem);
+  // };
 
   const handleChangePage = (page: number) => {
     setPage(page);
@@ -66,7 +66,7 @@ const SimpleTable: React.FC<TableProps> = ({
         aria-label='Controlled table'
         selectedKeys={selectedKeys}
         selectionMode='single'
-        onSelectionChange={handleSelectionChange}
+        // onSelectionChange={handleSelectionChange}
         bottomContent={
           pages > 0 ? (
             <div className='flex w-full justify-center'>
