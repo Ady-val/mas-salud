@@ -1,0 +1,88 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* * {
+  font-family: sans-serif;
+} */
+
+/* .raleway {
+  font-family: 'Raleway', sans-serif;
+} */
+
+.debug-border {
+  @apply border-2 border-black border-dashed;
+}
+
+.navlink-component {
+  @apply
+  h-14
+  w-full
+  text-2xl
+  text-main
+  pl-4;
+}
+
+.navlink-item {
+  @apply
+  w-full
+  h-full
+  flex
+  items-center
+  justify-center
+  rounded-l-full
+}
+
+.navlink-item:hover {
+  @apply bg-secondary
+}
+
+.navlink-item-active {
+  @apply
+  bg-main
+  text-primary
+  hover:bg-main
+  shadow-inner-lg-left-top;
+}
+
+.main-background {
+  @apply bg-tertiary rounded-[100px] overflow-hidden;
+}
+
+.main-background-2 {
+  @apply bg-primary rounded-[100px] overflow-hidden;
+}
+
+.input-form {
+  @apply flex w-full flex-wrap md:flex-nowrap mb-6 md:mb-0 gap-4
+  /* bg-main; */
+  ;
+}
+
+.card {
+  @apply min-w-[400px]
+  bg-primary
+  /* text-content-card */
+  rounded-lg px-2 py-1 gap-1;
+}
+
+.base-modal {
+  @apply
+  bg-primary
+}
+
+.header-title {
+  @apply
+  text-primary
+  font-bold
+  text-3xl
+  font-raleway
+}
+
+.header-subtitle {
+  @apply
+  text-primary
+  font-bold
+  text-2xl
+  font-raleway
+}
