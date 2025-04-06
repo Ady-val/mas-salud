@@ -1,7 +1,8 @@
 'use client';
 
 import React from 'react';
-import { CardHeader as HeroCardHeader } from '@mas-salud/components/atoms';
+
+import { CardHeader as HeroCardHeader } from '../../atoms';
 
 interface CardHeaderProps {
   title: string;

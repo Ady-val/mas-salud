@@ -6,16 +6,18 @@ import { useQueryClient } from '@tanstack/react-query';
 import { useModal } from '@mas-salud/context/ModalContext';
 import {
   ModalBody,
-  ModalButton,
   ModalContent,
   ModalFooter,
   ModalHeader,
-  ModalInput,
 } from '@mas-salud/components/atoms';
 import { IBeneficiary } from '@mas-salud/interfaces/beneficiaries';
 import { useLoading } from '@mas-salud/context/LoadingContext';
 import { useBeneficiaryMutation } from '@mas-salud/hooks/useBeneficiaryMutate';
-import { SimpleSelect } from '@mas-salud/components/molecules';
+import {
+  ModalButton,
+  ModalInput,
+  SimpleSelect,
+} from '@mas-salud/components/molecules';
 import { useToast } from '@mas-salud/hooks/useToast';
 import { QUERY_KEYS } from '@mas-salud/constants/queryKeys';
 import { beneficiarySchema } from '@mas-salud/schemas/beneficiarySchema';

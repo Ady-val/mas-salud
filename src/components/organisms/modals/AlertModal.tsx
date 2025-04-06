@@ -1,10 +1,10 @@
 import {
   ModalBody,
-  ModalButton,
   ModalContent,
   ModalFooter,
   ModalHeader,
 } from '@mas-salud/components/atoms';
+import { ModalButton } from '@mas-salud/components/molecules';
 import { useModal } from '@mas-salud/context/ModalContext';
 
 interface AlertModalProps {

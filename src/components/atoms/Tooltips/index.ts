@@ -1,1 +1,1 @@
-export { default as SimpleTooltip } from './SimpleTooltip';
+export { Tooltip } from '@heroui/tooltip';

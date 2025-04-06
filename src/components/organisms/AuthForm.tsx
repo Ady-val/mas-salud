@@ -1,7 +1,8 @@
 'use client';
 
 import React from 'react';
-import { Card, Divider, Input, Button } from '@mas-salud/components/atoms';
+import { Card, Divider } from '@mas-salud/components/atoms';
+import { Button, Input } from '@mas-salud/components/molecules';
 import {
   CardHeader,
   CardBody,

@@ -1,6 +1,6 @@
 import { sidebarRoutes } from '@mas-salud/constants/sidebarRoutes';
 
-import { NavLink } from '../atoms';
+import { NavLink } from '../molecules';
 
 const SideBar = () => {
   return (

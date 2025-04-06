@@ -1,6 +1,6 @@
 import React from 'react';
 import { useModal } from '@mas-salud/context/ModalContext';
-import { Button } from '@mas-salud/components/atoms';
+import { Button } from '@mas-salud/components/molecules';
 
 import {
   BeneficiariesData,

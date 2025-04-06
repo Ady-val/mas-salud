@@ -1,3 +1,2 @@
-export { default as Input } from './Input';
-export { default as FilterInput } from './FilterInput';
-export { default as ModalInput } from './ModalInput';
+export { Input } from '@heroui/input';
+export type { InputProps } from '@heroui/input';

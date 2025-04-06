@@ -3,7 +3,7 @@
 import { useForm } from 'react-hook-form';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { FilterInput } from '@mas-salud/components/atoms';
+import { FilterInput } from '@mas-salud/components/molecules';
 import { setFilters } from '@mas-salud/store/slices/beneficiaryFilterSlice';
 
 interface IFilterInput {

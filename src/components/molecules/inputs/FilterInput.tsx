@@ -1,6 +1,6 @@
 'use client";';
 
-import { Input as HeroInput, InputProps } from '@heroui/input';
+import { Input as HeroInput, InputProps } from '../../atoms';
 
 export default function FilterInput({
   label,

@@ -1,7 +1,8 @@
 'use client';
 
 import React from 'react';
-import { CardFooter as AtomFooter } from '@mas-salud/components/atoms';
+
+import { CardFooter as AtomFooter } from '../../atoms';
 
 interface CardFooterProps {
   children: React.ReactNode;

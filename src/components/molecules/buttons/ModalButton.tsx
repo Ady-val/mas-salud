@@ -1,9 +1,11 @@
 'use client';
 
 import React from 'react';
-import { Button as HerouiButton } from '@heroui/button';
 
-interface ButtonProps {
+import { Button, InputProps } from '../../atoms';
+
+interface ButtonProps extends InputProps {
+  type?: 'button' | 'submit' | 'reset';
   text: string;
   color?:
     | 'default'
@@ -18,7 +20,8 @@ interface ButtonProps {
   className?: string;
 }
 
-const Button: React.FC<ButtonProps> = ({
+const ModalButton: React.FC<ButtonProps> = ({
+  type = 'button',
   text,
   onClick,
   disabled = false,
@@ -27,7 +30,8 @@ const Button: React.FC<ButtonProps> = ({
   isLoading = false,
 }) => {
   return (
-    <HerouiButton
+    <Button
+      type={type}
       size='md'
       radius='md'
       variant='solid'
@@ -38,8 +42,8 @@ const Button: React.FC<ButtonProps> = ({
       isLoading={isLoading}
     >
       {text}
-    </HerouiButton>
+    </Button>
   );
 };
 
-export default Button;
+export default ModalButton;

@@ -1,6 +1,4 @@
-import { SelectProps } from '@heroui/select';
-
-import { Select, SelectItem } from '../../atoms';
+import { Select, SelectItem, SelectProps } from '../../atoms';
 
 interface Option {
   key: string;

@@ -1,7 +1,8 @@
 'use client';
 
 import React from 'react';
-import { CardBody as AtomCardBody } from '@mas-salud/components/atoms';
+
+import { CardBody as AtomCardBody } from '../../atoms';
 
 interface CardBodyProps {
   children: React.ReactNode;
