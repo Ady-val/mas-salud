@@ -1,10 +1,10 @@
 import axiosInstance from '@mas-salud/lib/apiClient/Axios';
 import {
   IBeneficiary,
-  UseBeneficiariesParams,
+  IBeneficiariesParams,
 } from '@mas-salud/interfaces/beneficiaries';
 
-export const fetchBeneficiaries = async (params: UseBeneficiariesParams) => {
+export const fetchBeneficiaries = async (params: IBeneficiariesParams) => {
   const response = await axiosInstance.get('/beneficiaries', { params });
 
   return response.data;

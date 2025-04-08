@@ -12,7 +12,7 @@ import {
 } from '@mas-salud/components/atoms';
 import { IBeneficiary } from '@mas-salud/interfaces/beneficiaries';
 import { useLoading } from '@mas-salud/context/LoadingContext';
-import { useBeneficiaryMutation } from '@mas-salud/hooks/useBeneficiaryMutate';
+import { useBeneficiaryMutation } from '@mas-salud/hooks/beneficiaries/useBeneficiaryMutate';
 import {
   ModalButton,
   ModalInput,

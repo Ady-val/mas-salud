@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { FilterInput } from '@mas-salud/components/molecules';
-import { setFilters } from '@mas-salud/store/slices/beneficiaryFilterSlice';
+import { setFilters } from '@mas-salud/store/slices/beneficiary';
 
 interface IFilterInput {
   name: string;

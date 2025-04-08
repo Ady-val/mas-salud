@@ -3,7 +3,7 @@ import { QUERY_KEYS } from '@mas-salud/constants/queryKeys';
 import { useLoading } from '@mas-salud/context/LoadingContext';
 import { useModal } from '@mas-salud/context/ModalContext';
 import { errorFormat } from '@mas-salud/helpers/errorFormt';
-import { useDeleteBeneficiary } from '@mas-salud/hooks/useBeneficiaryMutate';
+import { useDeleteBeneficiary } from '@mas-salud/hooks/beneficiaries/useBeneficiaryMutate';
 import { useToast } from '@mas-salud/hooks/useToast';
 import { IBeneficiary } from '@mas-salud/interfaces/beneficiaries';
 import { useQueryClient } from '@tanstack/react-query';

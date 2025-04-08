@@ -1,37 +1,24 @@
 'use client';
 
-import React, { useEffect, useMemo, useState } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect, useState } from 'react';
 import { isAxiosError } from 'axios';
 import { SimpleTable } from '@mas-salud/components/organisms';
-import { useBeneficiaries } from '@mas-salud/hooks/useBeneficiaries';
+import { useBeneficiaries } from '@mas-salud/hooks/beneficiaries/useBeneficiaries';
 import { HBeneficiaries } from '@mas-salud/constants/headers';
-import { RootState } from '@mas-salud/store';
-import { useDebounce } from '@mas-salud/hooks/useDebounce';
 import { useToast } from '@mas-salud/hooks/useToast';
 import { useModal } from '@mas-salud/context/ModalContext';
 import { IBeneficiary } from '@mas-salud/interfaces/beneficiaries';
+import { siteConfig } from '@mas-salud/config/site';
+import { useBeneficiaryFilters } from '@mas-salud/store/slices/beneficiary';
 
 import BeneficiaryDeleteAlertModal from './BeneficiaryDeleteAlertModal';
 import BeneficiaryFormModal from './BeneficiaryFormModal';
-
-const ROWS_PER_PAGE = 15;
 
 const BeneficiariesData: React.FC = () => {
   const { openModal } = useModal();
   const { errorToast } = useToast();
   const [currentPage, setCurrentPage] = useState(1);
-  const filters = useSelector((state: RootState) => state.filters);
-
-  const stableFilters = useMemo(() => {
-    return {
-      name: filters.name,
-      lastName: filters.lastName,
-      curp: filters.curp,
-    };
-  }, [filters]);
-
-  const { name, lastName, curp } = useDebounce(stableFilters, 500);
+  const { name, lastName, curp } = useBeneficiaryFilters();
 
   const {
     data: fetchedData,
@@ -39,7 +26,7 @@ const BeneficiariesData: React.FC = () => {
     isFetching,
   } = useBeneficiaries({
     page: currentPage,
-    limit: ROWS_PER_PAGE,
+    limit: siteConfig.queries.defaultLimit,
     name: name || undefined,
     lastName: lastName || undefined,
     curp: curp || undefined,
@@ -85,7 +72,7 @@ const BeneficiariesData: React.FC = () => {
       })}
       data={fetchedData?.data || []}
       count={fetchedData?.count || 0}
-      rowsPerPage={ROWS_PER_PAGE}
+      rowsPerPage={siteConfig.queries.defaultLimit}
       currentPage={currentPage}
       isLoading={isFetching}
       onPageChange={handlePageChange}

@@ -1,4 +1,4 @@
-import { FaHouse, FaUser } from 'react-icons/fa6';
+import { FaHouse, FaPills, FaUser, FaUserDoctor } from 'react-icons/fa6';
 
 interface SidebarRoute {
   title: string;
@@ -17,6 +17,16 @@ export const sidebarRoutes: SidebarRoute[] = [
     path: '/dashboard/beneficiaries',
     icon: <FaUser />,
   },
+  {
+    title: 'Beneficiarios',
+    path: '/dashboard/medicines',
+    icon: <FaPills />,
+  },
+  // {
+  //   title: 'Especialistas',
+  //   path: '/dashboard/specialist',
+  //   icon: <FaUserDoctor />,
+  // },
   // {
   //   title: 'Configuración',
   //   path: '/dashboard/settings',

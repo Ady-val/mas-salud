@@ -1,4 +1,4 @@
-export interface UseBeneficiariesParams {
+export interface IBeneficiariesParams {
   page?: number;
   limit?: number;
   name?: string;
@@ -6,6 +6,9 @@ export interface UseBeneficiariesParams {
   gender?: 'Male' | 'Female';
   curp?: string;
 }
+
+export interface IBeneficiaryFilterState
+  extends Omit<IBeneficiariesParams, 'page' | 'limit'> {}
 
 export interface IBeneficiary {
   id?: string;
