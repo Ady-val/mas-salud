@@ -45,10 +45,6 @@ const BeneficiariesData: React.FC = () => {
     setCurrentPage(page);
   };
 
-  const handleSelectionChange = (item: any) => {
-    console.log('Selected item:', item);
-  };
-
   const onView = (value: any) => {
     openModal(
       <BeneficiaryFormModal onlyView={true} obj={value as IBeneficiary} />,
@@ -76,7 +72,7 @@ const BeneficiariesData: React.FC = () => {
       currentPage={currentPage}
       isLoading={isFetching}
       onPageChange={handlePageChange}
-      onSelectionChange={handleSelectionChange}
+      onSelectionChange={() => {}}
     />
   );
 };

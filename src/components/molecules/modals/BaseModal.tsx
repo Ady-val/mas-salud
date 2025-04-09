@@ -4,7 +4,6 @@ import { useModal } from '@mas-salud/context/ModalContext';
 
 import { Modal } from '../../atoms';
 
-
 export default function BaseModal() {
   const { isOpen, closeModal, modalContent } = useModal();
 
@@ -13,6 +12,7 @@ export default function BaseModal() {
       size='2xl'
       isOpen={isOpen}
       onOpenChange={closeModal}
+      isDismissable={false}
       classNames={{
         backdrop:
           'bg-gradient-to-t from-button-primary/20 to-button-primary/10 backdrop-opacity-20',

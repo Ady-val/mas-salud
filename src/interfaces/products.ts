@@ -23,5 +23,5 @@ export interface IProduct {
   presentation: string;
   quantity: number;
   expirationDate: string;
-  lotNumber: string;
+  lotNumber?: string | null;
 }

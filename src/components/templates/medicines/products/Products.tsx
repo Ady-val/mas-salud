@@ -4,13 +4,14 @@ import { useModal } from '@mas-salud/context/ModalContext';
 import { Button } from '@mas-salud/components/molecules';
 
 import { ProductsData, ProductsFilters } from '../../medicines';
-import { BeneficiariesData } from '../../beneficiaries';
+
+import ProductsFormModal from './ProductsFormModal';
 
 const Products: React.FC = () => {
   const { openModal } = useModal();
 
   const handleOpenModal = () => {
-    // openModal(<BeneficiaryFormModal />);
+    openModal(<ProductsFormModal />);
   };
 
   return (

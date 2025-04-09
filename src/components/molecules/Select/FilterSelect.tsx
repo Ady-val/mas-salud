@@ -1,15 +1,11 @@
-import { Select, SelectItem, SelectProps } from '../../atoms';
+import { IOption } from '@mas-salud/interfaces/common';
 
-interface Option {
-  key: string;
-  label: string;
-  value: string;
-}
+import { Select, SelectItem, SelectProps } from '../../atoms';
 
 interface FilterSelectProps extends Omit<SelectProps, 'children'> {
   label: string;
   placeholder: string;
-  options: Option[];
+  options: IOption[];
 }
 
 export default function FilterSelect({

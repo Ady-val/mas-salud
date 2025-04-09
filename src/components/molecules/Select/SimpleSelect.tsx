@@ -1,15 +1,11 @@
-import { Select, SelectItem, SelectProps } from '../../atoms';
+import { IOption } from '@mas-salud/interfaces/common';
 
-interface Option {
-  key: string;
-  label: string;
-  value: string;
-}
+import { Select, SelectItem, SelectProps } from '../../atoms';
 
 interface SimpleSelectProps extends Omit<SelectProps, 'children'> {
   label: string;
   placeholder: string;
-  options: Option[];
+  options: IOption[];
 }
 
 export default function SimpleSelect({
@@ -23,7 +19,7 @@ export default function SimpleSelect({
       {...props}
       isRequired
       color='default'
-      className='max-w-xs'
+      className={`'max-w-xs' ${props.className}`}
       label={<span className='text-white'>{label}</span>}
       placeholder={placeholder}
       labelPlacement='outside'

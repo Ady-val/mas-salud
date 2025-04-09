@@ -10,7 +10,7 @@ import { useDispatch } from 'react-redux';
 
 const ProductsFilters: React.FC = () => {
   const dispatch = useDispatch();
-  const { register, watch, setValue } = useForm<IProductsFilterState>();
+  const { register, watch } = useForm<IProductsFilterState>();
   const formValues = watch();
 
   useEffect(() => {

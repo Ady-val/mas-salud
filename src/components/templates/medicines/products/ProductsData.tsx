@@ -9,6 +9,9 @@ import { useToast } from '@mas-salud/hooks/useToast';
 import { useProductsFilters } from '@mas-salud/store/slices/products';
 import { isAxiosError } from 'axios';
 import { useEffect, useState } from 'react';
+import ProductsFormModal from './ProductsFormModal';
+import { IProduct } from '@mas-salud/interfaces/products';
+import ProductDeleteAlertModal from './ProductsDeleteAlertModal';
 
 const ProductsData: React.FC = () => {
   const { openModal } = useModal();
@@ -39,12 +42,24 @@ const ProductsData: React.FC = () => {
     }
   }, [error]);
 
+  const onView = (value: any) => {
+    openModal(<ProductsFormModal onlyView={true} obj={value as IProduct} />);
+  };
+
+  const onEdit = (value: any) => {
+    openModal(<ProductsFormModal obj={value as IProduct} />);
+  };
+
+  const onDelete = (value: any) => {
+    openModal(<ProductDeleteAlertModal obj={value as IProduct} />);
+  };
+
   return (
     <SimpleTable
       headers={HMedicineProducts({
-        onView: (value: string) => console.log('View:', value),
-        onEdit: (value: string) => console.log('Edit:', value),
-        onDelete: (value: string) => console.log('Delete:', value),
+        onView,
+        onEdit,
+        onDelete,
       })}
       data={fetchedData?.data || []}
       count={fetchedData?.count || 0}
@@ -52,7 +67,7 @@ const ProductsData: React.FC = () => {
       currentPage={currentPage}
       isLoading={isFetching}
       onPageChange={(page: number) => setCurrentPage(page)}
-      onSelectionChange={(item: any) => console.log('Selected item:', item)}
+      onSelectionChange={() => {}}
     />
   );
 };

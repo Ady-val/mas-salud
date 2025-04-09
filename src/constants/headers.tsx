@@ -100,6 +100,14 @@ export const HMedicineProducts = ({
       cell: SimpleCell,
     },
     {
+      key: 'form',
+      label: 'Forma',
+      props: {
+        width: 300,
+      },
+      cell: SimpleCell,
+    },
+    {
       key: 'presentation',
       label: 'Presentación',
       props: {
@@ -122,7 +130,7 @@ export const HMedicineProducts = ({
         align: 'end',
         className: 'w-[5rem]',
       },
-      cell: (value, _item) => SettingsCell(value, onView, onEdit, onDelete),
+      cell: (_value, item) => SettingsCell(item, onView, onEdit, onDelete),
     },
   ];
 };
