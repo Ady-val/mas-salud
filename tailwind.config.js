@@ -10,7 +10,7 @@ const config = {
   theme: {
     extend: {
       boxShadow: {
-        'inner-layout': 'inset 1px 1px 20px 1px rgba(0,0,0,0.5)',
+        'inner-layout': 'inset 0.5px 0.5px 24px 2px rgba(0,0,0,0.5)',
         'inner-md': 'inset 0 4px 6px rgba(0,0,0,0.1)',
         'inner-lg-left-top': 'inset 8px 0.5px 6px -8px rgba(0,0,0,1)',
         'lg-right-main': '60px 7px 53px -40px #e5e7e9',
