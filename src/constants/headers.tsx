@@ -164,7 +164,7 @@ export const HMedicineInventory = ({
         align: 'end',
         className: 'w-[5rem]',
       },
-      cell: (value, _item) => SettingsCell(value, onView),
+      cell: (_value, item) => SettingsCell(item, onView),
     },
   ];
 };
