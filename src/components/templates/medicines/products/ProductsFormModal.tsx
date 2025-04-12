@@ -4,14 +4,12 @@ import {
   ModalContent,
   ModalFooter,
   ModalHeader,
-  parseDate,
 } from '@mas-salud/components/atoms';
 import {
   ModalButton,
   ModalInput,
   SimpleSelect,
 } from '@mas-salud/components/molecules';
-import DatePickerInput from '@mas-salud/components/molecules/inputs/DatePickerInput';
 import { formOptions } from '@mas-salud/constants/optinos/formOptions';
 import { unitOptions } from '@mas-salud/constants/optinos/unitOptions';
 import { QUERY_KEYS } from '@mas-salud/constants/queryKeys';
@@ -154,38 +152,6 @@ export default function ProductsFormModal({
               isInvalid={!!errors.presentation}
               errorMessage={errors.presentation?.message}
               className='col-span-6 md:col-span-4'
-            />
-            <ModalInput
-              isReadOnly={onlyView}
-              isRequired
-              label='Cantidad'
-              type='number'
-              placeholder='Cantidad del medicamento'
-              {...register('quantity')}
-              isInvalid={!!errors.quantity}
-              errorMessage={errors.quantity?.message}
-              className='col-span-3 md:col-span-2'
-            />
-            <DatePickerInput
-              isReadOnly={onlyView}
-              isRequired
-              label='Fecha de caducidad'
-              defaultValue={parseDate(obj?.expirationDate || '')}
-              onChange={(date) => {
-                setValue('expirationDate', date?.toString() || '');
-              }}
-              isInvalid={!!errors.expirationDate}
-              errorMessage={errors.expirationDate?.message}
-              className='col-span-3 md:col-span-2'
-            />
-            <ModalInput
-              isReadOnly={onlyView}
-              label='Número de lote'
-              placeholder='Número de lote del medicamento'
-              {...register('lotNumber')}
-              isInvalid={!!errors.lotNumber}
-              errorMessage={errors.lotNumber?.message}
-              className='col-span-3 md:col-span-2'
             />
           </div>
         </ModalBody>
