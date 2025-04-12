@@ -9,15 +9,16 @@ import { useToast } from '@mas-salud/hooks/useToast';
 import { useProductsFilters } from '@mas-salud/store/slices/products';
 import { isAxiosError } from 'axios';
 import { useEffect, useState } from 'react';
-import ProductsFormModal from './ProductsFormModal';
 import { IProduct } from '@mas-salud/interfaces/products';
+
+import ProductsFormModal from './ProductsFormModal';
 import ProductDeleteAlertModal from './ProductsDeleteAlertModal';
 
 const ProductsData: React.FC = () => {
   const { openModal } = useModal();
   const { errorToast } = useToast();
   const [currentPage, setCurrentPage] = useState(1);
-  const { name, brand, form, unit, lotNumber } = useProductsFilters();
+  const { name, brand, form, unit } = useProductsFilters();
 
   const {
     data: fetchedData,
@@ -30,7 +31,6 @@ const ProductsData: React.FC = () => {
     brand: brand || undefined,
     form: form || undefined,
     unit: unit || undefined,
-    lotNumber: lotNumber || undefined,
   });
 
   useEffect(() => {

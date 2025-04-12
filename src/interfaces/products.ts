@@ -7,7 +7,6 @@ export interface IProductsParams {
   brand?: string;
   form?: string;
   unit?: string;
-  lotNumber?: string;
 }
 
 export interface IProductsFilterState
@@ -21,7 +20,4 @@ export interface IProduct {
   form: EProductForm;
   unit: EProductUnit;
   presentation: string;
-  quantity: number;
-  expirationDate: string;
-  lotNumber?: string | null;
 }

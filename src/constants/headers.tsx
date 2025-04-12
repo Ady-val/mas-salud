@@ -116,14 +116,6 @@ export const HMedicineProducts = ({
       cell: SimpleCell,
     },
     {
-      key: 'quantity',
-      label: 'Cantidad',
-      props: {
-        width: 300,
-      },
-      cell: SimpleCell,
-    },
-    {
       key: 'id',
       label: 'Configuración',
       props: {

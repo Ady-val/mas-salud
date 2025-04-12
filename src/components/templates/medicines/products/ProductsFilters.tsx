@@ -1,7 +1,6 @@
 'use client';
 
 import { FilterInput } from '@mas-salud/components/molecules';
-import FilterSelect from '@mas-salud/components/molecules/select/FilterSelect';
 import { IProductsFilterState } from '@mas-salud/interfaces/products';
 import { setFilters } from '@mas-salud/store/slices/products';
 import { useEffect } from 'react';
