@@ -2,64 +2,44 @@
 
 import { SimpleTable } from '@mas-salud/components/organisms';
 import { siteConfig } from '@mas-salud/config/site';
-import { HMedicineProducts } from '@mas-salud/constants/headers';
+import { HMedicineInventory } from '@mas-salud/constants/headers';
 import { useModal } from '@mas-salud/context/ModalContext';
-import { useProducts } from '@mas-salud/hooks/products/useProducts';
+import { useInventories } from '@mas-salud/hooks/inventory/useInventory';
 import { useToast } from '@mas-salud/hooks/useToast';
-import { useProductsFilters } from '@mas-salud/store/slices/products';
+import { useInventoryFilters } from '@mas-salud/store/slices/inventory';
 import { isAxiosError } from 'axios';
 import { useEffect, useState } from 'react';
-import { IProduct } from '@mas-salud/interfaces/products';
 
-import ProductsFormModal from './ProductsFormModal';
-import ProductDeleteAlertModal from './ProductsDeleteAlertModal';
-
-const ProductsData: React.FC = () => {
+const InventoryData: React.FC = () => {
   const { openModal } = useModal();
   const { errorToast } = useToast();
   const [currentPage, setCurrentPage] = useState(1);
-  const { name, brand, form, unit } = useProductsFilters();
+  const { name, institutionId } = useInventoryFilters();
 
   const {
     data: fetchedData,
     error,
     isFetching,
-  } = useProducts({
+  } = useInventories({
     page: currentPage,
     limit: siteConfig.queries.defaultLimit,
     name: name || undefined,
-    brand: brand || undefined,
-    form: form || undefined,
-    unit: unit || undefined,
+    institutionId: institutionId || undefined,
   });
 
   useEffect(() => {
     if (isAxiosError(error)) {
       errorToast(
-        `Error al buscar productos, intente mas tarde`,
+        `Error al buscar inventario, intente mas tarde`,
         `${error.status}: ${error.message}`,
       );
     }
   }, [error]);
 
-  const onView = (value: any) => {
-    openModal(<ProductsFormModal onlyView={true} obj={value as IProduct} />);
-  };
-
-  const onEdit = (value: any) => {
-    openModal(<ProductsFormModal obj={value as IProduct} />);
-  };
-
-  const onDelete = (value: any) => {
-    openModal(<ProductDeleteAlertModal obj={value as IProduct} />);
-  };
-
   return (
     <SimpleTable
-      headers={HMedicineProducts({
-        onView,
-        onEdit,
-        onDelete,
+      headers={HMedicineInventory({
+        onView: (value: string) => console.log('View:', value),
       })}
       data={fetchedData?.data || []}
       count={fetchedData?.count || 0}
@@ -72,4 +52,4 @@ const ProductsData: React.FC = () => {
   );
 };
 
-export default ProductsData;
+export default InventoryData;

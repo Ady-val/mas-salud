@@ -1,3 +1,5 @@
+import { IOption } from '@mas-salud/interfaces/common';
+
 export const formatErrorMessage = (message: any): string => {
   if (message) {
     if (typeof message === 'string') {
@@ -10,4 +12,15 @@ export const formatErrorMessage = (message: any): string => {
   }
 
   return 'Error desconocido. Por favor, inténtalo de nuevo.';
+};
+
+export const formatOptions = (data: any[] | undefined): IOption[] => {
+  if (!data) return [];
+  if (data.length === 0) return [];
+
+  return data.map((item) => ({
+    label: item.name,
+    value: item.id,
+    key: item.id,
+  }));
 };

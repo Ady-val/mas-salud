@@ -129,16 +129,12 @@ export const HMedicineProducts = ({
 
 export const HMedicineInventory = ({
   onView,
-  onEdit,
-  onDelete,
 }: {
   onView: (value: string) => void;
-  onEdit: (value: string) => void;
-  onDelete: (value: string) => void;
 }): TDataHeaders<any>[] => {
   return [
     {
-      key: 'medicine',
+      key: 'name',
       label: 'Medicamento',
       props: {
         width: 300,
@@ -162,37 +158,13 @@ export const HMedicineInventory = ({
       cell: SimpleCell,
     },
     {
-      key: 'unit',
-      label: 'Unidad',
-      props: {
-        width: 300,
-      },
-      cell: SimpleCell,
-    },
-    {
-      key: 'presentation',
-      label: 'Presentación',
-      props: {
-        width: 300,
-      },
-      cell: SimpleCell,
-    },
-    {
-      key: 'quantity',
-      label: 'Cantidad',
-      props: {
-        width: 300,
-      },
-      cell: SimpleCell,
-    },
-    {
       key: 'id',
       label: 'Configuración',
       props: {
         align: 'end',
         className: 'w-[5rem]',
       },
-      cell: (value, _item) => SettingsCell(value, onView, onEdit, onDelete),
+      cell: (value, _item) => SettingsCell(value, onView),
     },
   ];
 };

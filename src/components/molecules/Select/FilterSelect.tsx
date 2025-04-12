@@ -4,7 +4,7 @@ import { Select, SelectItem, SelectProps } from '../../atoms';
 
 interface FilterSelectProps extends Omit<SelectProps, 'children'> {
   label: string;
-  placeholder: string;
+  placeholder?: string;
   options: IOption[];
 }
 

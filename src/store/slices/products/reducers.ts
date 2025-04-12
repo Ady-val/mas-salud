@@ -6,7 +6,6 @@ const initialState: IProductsFilterState = {
   brand: '',
   form: '',
   unit: '',
-  lotNumber: '',
 };
 
 const setFilters: CaseReducer<
