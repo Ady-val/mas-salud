@@ -1,11 +1,18 @@
 import { DeleteChip, EditChip, ViewChip } from '../chips';
 
-export const SettingsCell = (
-  value: any,
-  onView?: (value: any) => void,
-  onEdit?: (value: any) => void,
-  onDelete?: (value: any) => void,
-): React.ReactNode => {
+interface SettingsCellProps {
+  value: any;
+  onView?: (value: any) => void;
+  onEdit?: (value: any) => void;
+  onDelete?: (value: any) => void;
+}
+
+export const SettingsCell = ({
+  value,
+  onView,
+  onEdit,
+  onDelete,
+}: SettingsCellProps): React.ReactNode => {
   return (
     <div className='w-full flex items-center justify-end'>
       <div className='w-fit flex gap-2'>

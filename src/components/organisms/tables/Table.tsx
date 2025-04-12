@@ -15,7 +15,7 @@ import {
   TableHeader,
   TableRow,
   getKeyValue,
-} from '../atoms';
+} from '../../atoms';
 
 const SimpleTable: React.FC<TableProps> = ({
   headers,

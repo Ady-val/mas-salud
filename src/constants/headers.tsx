@@ -1,7 +1,9 @@
 import {
   BeneficiaryCell,
+  ModalSettingsCell,
   SettingsCell,
   SimpleCell,
+  SimpleModalCell,
 } from '@mas-salud/components/molecules/table-cells';
 import { TDataHeaders } from '@mas-salud/types/table';
 
@@ -52,7 +54,8 @@ export const HBeneficiaries = ({
         // minWidth: '100px',
         className: 'w-[5rem]',
       },
-      cell: (_value, item) => SettingsCell(item, onView, onEdit, onDelete),
+      cell: (_value, item) =>
+        SettingsCell({ value: item, onView, onEdit, onDelete }),
     },
   ];
 };
@@ -122,7 +125,13 @@ export const HMedicineProducts = ({
         align: 'end',
         className: 'w-[5rem]',
       },
-      cell: (_value, item) => SettingsCell(item, onView, onEdit, onDelete),
+      cell: (_value, item) =>
+        SettingsCell({
+          value: item,
+          onView,
+          onEdit,
+          onDelete,
+        }),
     },
   ];
 };
@@ -158,13 +167,83 @@ export const HMedicineInventory = ({
       cell: SimpleCell,
     },
     {
+      key: 'batches',
+      label: 'Lotes',
+      props: {
+        width: 300,
+      },
+      cell: SimpleCell,
+    },
+    {
       key: 'id',
       label: 'Configuración',
       props: {
         align: 'end',
         className: 'w-[5rem]',
       },
-      cell: (_value, item) => SettingsCell(item, onView),
+      cell: (_value, item) =>
+        SettingsCell({
+          value: item,
+          onView,
+        }),
+    },
+  ];
+};
+
+export const HMedicineInventoryItems = ({
+  onDelete,
+}: {
+  onDelete: (value: string) => void;
+}): TDataHeaders<any>[] => {
+  return [
+    {
+      key: 'barcode',
+      label: 'Código de Barras',
+      props: {
+        align: 'center',
+        width: 300,
+      },
+      cell: SimpleModalCell,
+    },
+    {
+      key: 'batchNumber',
+      label: 'Número de Lote',
+      props: {
+        align: 'center',
+        width: 300,
+      },
+      cell: SimpleModalCell,
+    },
+    {
+      key: 'quantity',
+      label: 'Cantidad',
+      props: {
+        align: 'center',
+        width: 300,
+      },
+      cell: SimpleModalCell,
+    },
+    {
+      key: 'expirationDate',
+      label: 'Fecha de Vencimiento',
+      props: {
+        align: 'center',
+        width: 300,
+      },
+      cell: SimpleModalCell,
+    },
+    {
+      key: 'id',
+      label: 'Configuración',
+      props: {
+        align: 'end',
+        className: 'w-[5rem]',
+      },
+      cell: (_value, item) =>
+        ModalSettingsCell({
+          value: item,
+          onDelete,
+        }),
     },
   ];
 };
@@ -210,7 +289,13 @@ export const HSpecialist = ({
         align: 'end',
         className: 'w-[5rem]',
       },
-      cell: (value, _item) => SettingsCell(value, onView, onEdit, onDelete),
+      cell: (value, _item) =>
+        SettingsCell({
+          value,
+          onView,
+          onEdit,
+          onDelete,
+        }),
     },
   ];
 };

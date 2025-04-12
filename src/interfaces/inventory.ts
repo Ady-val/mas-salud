@@ -6,6 +6,14 @@ export interface IInventoryParams {
   institutionId?: string;
 }
 
+export interface IInventoryItemsParams {
+  page?: number;
+  limit?: number;
+  name?: string;
+  productId?: string;
+  institutionId?: string;
+}
+
 export interface IInventoryFilterState
   extends Omit<IInventoryParams, 'page' | 'limit'> {}
 

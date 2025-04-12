@@ -9,6 +9,9 @@ import { useToast } from '@mas-salud/hooks/useToast';
 import { useInventoryFilters } from '@mas-salud/store/slices/inventory';
 import { isAxiosError } from 'axios';
 import { useEffect, useState } from 'react';
+import { IInventory } from '@mas-salud/interfaces/inventory';
+
+import InventoryItemsModal from './InventoryItemsModal';
 
 const InventoryData: React.FC = () => {
   const { openModal } = useModal();
@@ -36,10 +39,14 @@ const InventoryData: React.FC = () => {
     }
   }, [error]);
 
+  const onView = (value: any) => {
+    openModal(<InventoryItemsModal obj={value as IInventory} />);
+  };
+
   return (
     <SimpleTable
       headers={HMedicineInventory({
-        onView: (value: string) => console.log('View:', value),
+        onView,
       })}
       data={fetchedData?.data || []}
       count={fetchedData?.count || 0}

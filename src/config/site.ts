@@ -5,6 +5,7 @@ export const siteConfig = {
   description: 'Más Salud.',
   queries: {
     defaultLimit: 15,
+    modalLimit: 5,
     defaultPage: 1,
     defaultSort: 'id',
     defaultOrder: 'asc',
