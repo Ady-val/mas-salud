@@ -44,7 +44,7 @@ const NavigatorTabs = ({ tabs }: NavigatorTabsProps) => {
       </div>
       <Tabs
         aria-label='Dynamic tabs'
-        color='primary'
+        color='secondary'
         selectedKey={getActiveTab(pathname)}
       >
         {tabs.map((tab) => (

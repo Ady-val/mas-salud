@@ -9,7 +9,7 @@ export default function BaseModal() {
 
   return (
     <Modal
-      size='2xl'
+      size='3xl'
       isOpen={isOpen}
       onOpenChange={closeModal}
       isDismissable={false}

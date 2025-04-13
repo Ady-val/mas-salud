@@ -7,6 +7,7 @@ interface ModalContextProps {
   isOpen: boolean;
   openModal: (content: ReactNode) => void;
   closeModal: () => void;
+  changeModalContent: (content: ReactNode) => void;
   modalContent: ReactNode | null;
 }
 
@@ -23,6 +24,10 @@ export const ModalProvider = ({ children }: { children: ReactNode }) => {
     onOpen();
   };
 
+  const changeModalContent = (content: ReactNode) => {
+    setModalContent(content);
+  };
+
   const closeModal = () => {
     onClose();
     setModalContent(null);
@@ -30,7 +35,13 @@ export const ModalProvider = ({ children }: { children: ReactNode }) => {
 
   return (
     <ModalContext.Provider
-      value={{ isOpen, openModal, closeModal, modalContent }}
+      value={{
+        isOpen,
+        openModal,
+        closeModal,
+        modalContent,
+        changeModalContent,
+      }}
     >
       {children}
     </ModalContext.Provider>

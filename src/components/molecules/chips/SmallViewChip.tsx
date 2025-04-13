@@ -7,7 +7,7 @@ export default function SmallViewChip({ onClick }: { onClick: () => void }) {
   return (
     <SimpleTooltip text='Ver'>
       <button onClick={onClick}>
-        <Chip size='md' className='bg-primary'>
+        <Chip size='md' className='bg-secondary'>
           <FaEye className='text-lg text-white' />
         </Chip>
       </button>

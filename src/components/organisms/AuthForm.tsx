@@ -59,7 +59,6 @@ const AuthForm: React.FC<AuthFormProps> = ({
       <CardFooter>
         <Button
           text='Iniciar Sesión'
-          color='secondary'
           className='w-full'
           isLoading={isLoading}
           disabled={isLoading}

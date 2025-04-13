@@ -9,12 +9,17 @@ import { useToast } from '@mas-salud/hooks/useToast';
 import { useInventoryFilters } from '@mas-salud/store/slices/inventory';
 import { isAxiosError } from 'axios';
 import { useEffect, useState } from 'react';
-import { IInventory } from '@mas-salud/interfaces/inventory';
+import {
+  IInventory,
+  IInventoryItem,
+  IInventoryParams,
+} from '@mas-salud/interfaces/inventory';
 
 import InventoryItemsModal from './InventoryItemsModal';
+import InventoryItemAlertDeleteModal from './InventoryItemAlertDeleteModal';
 
 const InventoryData: React.FC = () => {
-  const { openModal } = useModal();
+  const { openModal, closeModal } = useModal();
   const { errorToast } = useToast();
   const [currentPage, setCurrentPage] = useState(1);
   const { name, institutionId } = useInventoryFilters();
@@ -39,8 +44,15 @@ const InventoryData: React.FC = () => {
     }
   }, [error]);
 
+  const onDeleteItem = (value: any) => {
+    closeModal();
+    openModal(<InventoryItemAlertDeleteModal obj={value as IInventoryItem} />);
+  };
+
   const onView = (value: any) => {
-    openModal(<InventoryItemsModal obj={value as IInventory} />);
+    openModal(
+      <InventoryItemsModal obj={value as IInventory} onDelete={onDeleteItem} />,
+    );
   };
 
   return (

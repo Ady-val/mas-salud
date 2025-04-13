@@ -26,3 +26,15 @@ export interface IInventory {
   institutionId: string;
   institution: string;
 }
+
+export interface IInventoryItem {
+  id?: string;
+  product: string;
+  productId: string;
+  institution: string;
+  institutionId: string;
+  barcode: string;
+  batchNumber: string;
+  expirationDate: string;
+  quantity: number;
+}

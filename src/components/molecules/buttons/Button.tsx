@@ -24,7 +24,7 @@ const Button: React.FC<ButtonProps> = ({
   onClick,
   disabled = false,
   className = '',
-  color = 'default',
+  color = 'secondary',
   isLoading = false,
 }) => {
   return (

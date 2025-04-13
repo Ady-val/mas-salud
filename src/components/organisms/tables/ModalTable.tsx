@@ -73,7 +73,7 @@ const ModalTable: React.FC<TableProps> = ({
                 isCompact
                 showControls
                 showShadow
-                color='primary'
+                color='secondary'
                 page={page}
                 total={pages}
                 onChange={handleChangePage}
@@ -83,7 +83,7 @@ const ModalTable: React.FC<TableProps> = ({
         }
         classNames={{
           wrapper: 'min-h-[380px]',
-          th: 'bg-primary text-white font-normal',
+          th: 'bg-secondary text-white font-normal',
           tr: 'border-b border-gray-200 h-[48px]',
         }}
       >

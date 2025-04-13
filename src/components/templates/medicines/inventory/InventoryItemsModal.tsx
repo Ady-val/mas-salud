@@ -18,6 +18,7 @@ import { HMedicineInventoryItems } from '@mas-salud/constants/headers';
 export default function InventoryItemsModal({
   onlyView,
   obj,
+  onDelete,
 }: FormalModalProps<IInventory>) {
   const { closeModal } = useModal();
   const [currentPage, setCurrentPage] = useState(1);
@@ -59,7 +60,7 @@ export default function InventoryItemsModal({
         </div>
         <ModalTable
           headers={HMedicineInventoryItems({
-            onDelete: (item) => console.log(item),
+            onDelete: (item) => onDelete?.(item),
           })}
           data={fetchedData?.data || []}
           count={fetchedData?.count || 0}

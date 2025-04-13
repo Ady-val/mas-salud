@@ -18,11 +18,7 @@ const Products: React.FC = () => {
     <div className='flex flex-col gap-4'>
       <div className='flex justify-between items-center'>
         <ProductsFilters />
-        <Button
-          text='Agregar Producto'
-          color='primary'
-          onClick={handleOpenModal}
-        />
+        <Button text='Agregar Producto' onClick={handleOpenModal} />
       </div>
       <ProductsData />
     </div>

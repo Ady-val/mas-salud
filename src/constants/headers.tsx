@@ -193,7 +193,7 @@ export const HMedicineInventory = ({
 export const HMedicineInventoryItems = ({
   onDelete,
 }: {
-  onDelete: (value: string) => void;
+  onDelete: (value: any) => void;
 }): TDataHeaders<any>[] => {
   return [
     {
@@ -216,7 +216,16 @@ export const HMedicineInventoryItems = ({
     },
     {
       key: 'quantity',
-      label: 'Cantidad',
+      label: 'Cantidad Inicial',
+      props: {
+        align: 'center',
+        width: 300,
+      },
+      cell: SimpleModalCell,
+    },
+    {
+      key: 'currentQuantity',
+      label: 'Disponible',
       props: {
         align: 'center',
         width: 300,

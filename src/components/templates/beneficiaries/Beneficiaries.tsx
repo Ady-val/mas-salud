@@ -19,11 +19,7 @@ const Beneficiaries: React.FC = () => {
     <div className='flex flex-col gap-4'>
       <div className='flex justify-between items-center'>
         <BeneficiariesFilters />
-        <Button
-          text='Agregar Beneficiario'
-          color='primary'
-          onClick={handleOpenModal}
-        />
+        <Button text='Agregar Beneficiario' onClick={handleOpenModal} />
       </div>
       <BeneficiariesData />
     </div>

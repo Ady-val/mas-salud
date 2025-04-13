@@ -16,3 +16,9 @@ export const fetchInventoryItems = async (params: IInventoryItemsParams) => {
 
   return response.data;
 };
+
+export const deleteInventoryItem = async (id: string) => {
+  const response = await axiosInstance.delete(`/inventories/${id}`);
+
+  return response.data;
+};

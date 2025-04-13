@@ -18,7 +18,7 @@ const SpecialistDashboard: React.FC = () => {
           <FilterInput label='Especialidad' type='text' />
           <FilterInput label='Institucion' type='text' />
         </form>
-        <Button text='Agregar Especialista' color='primary' />
+        <Button text='Agregar Especialista' />
       </div>
 
       <SimpleTable

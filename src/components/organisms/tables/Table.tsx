@@ -73,7 +73,7 @@ const SimpleTable: React.FC<TableProps> = ({
                 isCompact
                 showControls
                 showShadow
-                color='primary'
+                color='secondary'
                 page={page}
                 total={pages}
                 onChange={handleChangePage}
@@ -81,6 +81,9 @@ const SimpleTable: React.FC<TableProps> = ({
             </div>
           ) : null
         }
+        classNames={{
+          th: 'bg-secondary text-white font-normal',
+        }}
       >
         <TableHeader columns={headers}>
           {(column) => (

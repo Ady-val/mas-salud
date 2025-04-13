@@ -17,11 +17,7 @@ const Inventory: React.FC = () => {
     <div className='flex flex-col gap-4'>
       <div className='flex justify-between items-center'>
         <InventoryFilters />
-        <Button
-          text='Agregar Inventario'
-          color='primary'
-          onClick={handleOpenModal}
-        />
+        <Button text='Agregar Inventario' onClick={handleOpenModal} />
       </div>
       <InventoryData />
     </div>
