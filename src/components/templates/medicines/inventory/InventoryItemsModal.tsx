@@ -14,6 +14,8 @@ import { useEffect, useState } from 'react';
 import { siteConfig } from '@mas-salud/config/site';
 import { ModalTable } from '@mas-salud/components/organisms';
 import { HMedicineInventoryItems } from '@mas-salud/constants/headers';
+import { useToast } from '@mas-salud/hooks/useToast';
+import { isAxiosError } from 'axios';
 
 export default function InventoryItemsModal({
   onlyView,
@@ -22,6 +24,7 @@ export default function InventoryItemsModal({
 }: FormalModalProps<IInventory>) {
   const { closeModal } = useModal();
   const [currentPage, setCurrentPage] = useState(1);
+  const { errorToast } = useToast();
 
   const {
     data: fetchedData,
@@ -35,10 +38,13 @@ export default function InventoryItemsModal({
   });
 
   useEffect(() => {
-    if (fetchedData) {
-      console.log('fetchedData', fetchedData);
+    if (isAxiosError(error)) {
+      errorToast(
+        `Error al buscar lotes, intente mas tarde`,
+        `${error.status}: ${error.message}`,
+      );
     }
-  }, [fetchedData]);
+  }, [error]);
 
   return (
     <ModalContent>
