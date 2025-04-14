@@ -9,11 +9,7 @@ import { useToast } from '@mas-salud/hooks/useToast';
 import { useInventoryFilters } from '@mas-salud/store/slices/inventory';
 import { isAxiosError } from 'axios';
 import { useEffect, useState } from 'react';
-import {
-  IInventory,
-  IInventoryItem,
-  IInventoryParams,
-} from '@mas-salud/interfaces/inventory';
+import { IInventory, IInventoryItem } from '@mas-salud/interfaces/inventory';
 
 import InventoryItemsModal from './InventoryItemsModal';
 import InventoryItemAlertDeleteModal from './InventoryItemAlertDeleteModal';

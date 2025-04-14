@@ -5,6 +5,7 @@ import {
   DashboardMainLayout,
 } from '@mas-salud/components/templates';
 import { NavigatorTabs } from '@mas-salud/components/organisms';
+import { Modules } from '@mas-salud/enum/modules';
 
 let tabs = [
   {
@@ -26,6 +27,7 @@ interface MedicinesPageProps {
 const MedicinesPage: React.FC<MedicinesPageProps> = ({ children }) => {
   return (
     <DashboardMainLayout
+      systemModule={Modules.InventoryItem}
       header={<DashboardHeader title='Medicamentos' />}
       footer={<DashboardFooter text='Institución: DIF' />}
     >

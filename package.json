@@ -9,6 +9,8 @@
     "lint": "eslint . --ext .ts,.tsx -c .eslintrc.json --fix"
   },
   "dependencies": {
+    "@casl/ability": "^6.7.3",
+    "@casl/react": "^5.0.0",
     "@heroui/button": "2.2.16",
     "@heroui/card": "^2.2.15",
     "@heroui/chip": "^2.2.12",

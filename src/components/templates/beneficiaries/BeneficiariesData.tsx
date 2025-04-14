@@ -10,6 +10,8 @@ import { useModal } from '@mas-salud/context/ModalContext';
 import { IBeneficiary } from '@mas-salud/interfaces/beneficiaries';
 import { siteConfig } from '@mas-salud/config/site';
 import { useBeneficiaryFilters } from '@mas-salud/store/slices/beneficiary';
+import { useHasModulePermissions } from '@mas-salud/store/slices/permissions';
+import { Modules } from '@mas-salud/enum/modules';
 
 import BeneficiaryDeleteAlertModal from './BeneficiaryDeleteAlertModal';
 import BeneficiaryFormModal from './BeneficiaryFormModal';
@@ -19,6 +21,7 @@ const BeneficiariesData: React.FC = () => {
   const { errorToast } = useToast();
   const [currentPage, setCurrentPage] = useState(1);
   const { name, lastName, curp } = useBeneficiaryFilters();
+  const can = useHasModulePermissions(Modules.Beneficiaries);
 
   const {
     data: fetchedData,
@@ -52,10 +55,26 @@ const BeneficiariesData: React.FC = () => {
   };
 
   const onEdit = (value: any) => {
+    if (!can.update) {
+      errorToast(
+        `Acceso denegado`,
+        `No tienes permisos para editar beneficiarios`,
+      );
+
+      return;
+    }
     openModal(<BeneficiaryFormModal obj={value as IBeneficiary} />);
   };
 
   const onDelete = (value: any) => {
+    if (!can.delete) {
+      errorToast(
+        `Acceso denegado`,
+        `No tienes permisos para eliminar beneficiarios`,
+      );
+
+      return;
+    }
     openModal(<BeneficiaryDeleteAlertModal obj={value as IBeneficiary} />);
   };
 

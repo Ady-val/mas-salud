@@ -13,12 +13,15 @@ import { IProduct } from '@mas-salud/interfaces/products';
 
 import ProductsFormModal from './ProductsFormModal';
 import ProductDeleteAlertModal from './ProductsDeleteAlertModal';
+import { useHasModulePermissions } from '@mas-salud/store/slices/permissions';
+import { Modules } from '@mas-salud/enum/modules';
 
 const ProductsData: React.FC = () => {
   const { openModal } = useModal();
   const { errorToast } = useToast();
   const [currentPage, setCurrentPage] = useState(1);
   const { name, brand, form, unit } = useProductsFilters();
+  const can = useHasModulePermissions(Modules.Products);
 
   const {
     data: fetchedData,
@@ -47,10 +50,23 @@ const ProductsData: React.FC = () => {
   };
 
   const onEdit = (value: any) => {
+    if (!can.update) {
+      errorToast(`Acceso denegado`, `No tienes permisos para editar productos`);
+
+      return;
+    }
     openModal(<ProductsFormModal obj={value as IProduct} />);
   };
 
   const onDelete = (value: any) => {
+    if (!can.delete) {
+      errorToast(
+        `Acceso denegado`,
+        `No tienes permisos para eliminar productos`,
+      );
+
+      return;
+    }
     openModal(<ProductDeleteAlertModal obj={value as IProduct} />);
   };
 

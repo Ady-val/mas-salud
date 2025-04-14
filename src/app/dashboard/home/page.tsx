@@ -6,10 +6,12 @@ import {
   DashboardMainLayout,
 } from '@mas-salud/components/templates';
 import { ImageContainer } from '@mas-salud/components/atoms';
+import { Modules } from '@mas-salud/enum/modules';
 
 const HomePage: React.FC = () => {
   return (
     <DashboardMainLayout
+      systemModule={Modules.Dashboard}
       header={<DashboardHeader title='Inicio' />}
       footer={<DashboardFooter text='Institución: DIF' />}
     >
