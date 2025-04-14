@@ -7,6 +7,8 @@ export async function middleware(request: NextRequest) {
   const currentPath = request.nextUrl.pathname;
   const token = request.cookies.get('access_token');
 
+  console.log('running middleware', isRootPath);
+
   if (!token) {
     if (currentPath !== '/login') {
       return NextResponse.redirect(new URL('/login', request.url));

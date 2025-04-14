@@ -6,6 +6,7 @@ import { Button as HerouiButton } from '../../atoms';
 import { SimpleTooltip } from '../tooltips';
 
 interface ButtonProps {
+  type?: 'button' | 'submit' | 'reset';
   text: string;
   color?:
     | 'default'
@@ -22,6 +23,7 @@ interface ButtonProps {
 }
 
 const Button: React.FC<ButtonProps> = ({
+  type = 'button',
   text,
   onClick,
   disabled = false,
@@ -35,6 +37,7 @@ const Button: React.FC<ButtonProps> = ({
   return (
     <SimpleTooltip text={disabledMessage} isDisabled={!disabled} color='danger'>
       <HerouiButton
+        type={type}
         size='md'
         radius='md'
         variant='solid'

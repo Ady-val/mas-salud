@@ -20,7 +20,6 @@ export const useLoadPermissions = () => {
         const response = await fetchMe();
         const permissions = response['permissions'] as AppAbility['rules'];
 
-        console.log('Fetched permissions:', permissions);
         if (permissions) {
           dispatch(setPermissions(permissions));
         } else {
