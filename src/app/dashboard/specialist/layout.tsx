@@ -15,7 +15,7 @@ const ProductsLayout: React.FC<MedicinesPageProps> = ({ children }) => {
     <DashboardMainLayout
       systemModule={Modules.Specialist}
       header={<DashboardHeader title='Especialistas' />}
-      footer={<DashboardFooter text='Institución: DIF' />}
+      footer={<DashboardFooter />}
     >
       {children}
     </DashboardMainLayout>

@@ -7,6 +7,8 @@ import { PureAbility } from '@casl/ability';
 import { Modules } from '@mas-salud/enum/modules';
 import { Action } from '@mas-salud/enum/actions';
 
+import { setUser } from '../user';
+
 import { AppAbility, permissionsSelector, setPermissions } from '.';
 
 export const useLoadPermissions = () => {
@@ -18,9 +20,17 @@ export const useLoadPermissions = () => {
     const fetchPermissions = async () => {
       try {
         const response = await fetchMe();
+
         const permissions = response['permissions'] as AppAbility['rules'];
 
         if (permissions) {
+          dispatch(
+            setUser({
+              name: response['username'],
+              username: response['username'],
+              institution: response['institution'],
+            }),
+          );
           dispatch(setPermissions(permissions));
         } else {
           setError('No permissions found.');

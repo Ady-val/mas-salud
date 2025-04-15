@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 
+import userReducer from './slices/user';
 import filtersReducer from './slices/beneficiary';
 import productsFiltersReducer from './slices/products';
 import inventoryFiltersReducer from './slices/inventory';
@@ -8,6 +9,7 @@ import permissionsReducer from './slices/permissions';
 
 export const store = configureStore({
   reducer: {
+    user: userReducer,
     permissions: permissionsReducer,
     filters: filtersReducer,
     productsFilters: productsFiltersReducer,

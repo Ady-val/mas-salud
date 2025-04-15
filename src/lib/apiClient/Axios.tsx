@@ -18,7 +18,7 @@ axiosInstance.interceptors.response.use(
   (response) => response,
   (error) => {
     console.error('Error en la respuesta de Axios:', error.status, error.code);
-    if (error?.status === 401) {
+    if (error?.status === 401 && !window.location.pathname.includes('/login')) {
       window.location.href = '/login';
     }
 

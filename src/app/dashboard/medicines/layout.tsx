@@ -29,7 +29,7 @@ const MedicinesPage: React.FC<MedicinesPageProps> = ({ children }) => {
     <DashboardMainLayout
       systemModule={Modules.InventoryItem}
       header={<DashboardHeader title='Medicamentos' />}
-      footer={<DashboardFooter text='Institución: DIF' />}
+      footer={<DashboardFooter />}
     >
       <NavigatorTabs tabs={tabs} />
       <div>{children}</div>

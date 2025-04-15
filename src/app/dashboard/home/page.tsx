@@ -13,7 +13,7 @@ const HomePage: React.FC = () => {
     <DashboardMainLayout
       systemModule={Modules.Dashboard}
       header={<DashboardHeader title='Inicio' />}
-      footer={<DashboardFooter text='Institución: DIF' />}
+      footer={<DashboardFooter />}
     >
       <div className='w-full h-full flex flex-col items-center justify-center main-background p-10'>
         <div className='h-1/3 flex justify-center items-center'>

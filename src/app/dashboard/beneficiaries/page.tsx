@@ -14,7 +14,7 @@ const BeneficiariesPage: React.FC = () => {
     <DashboardMainLayout
       systemModule={Modules.Beneficiaries}
       header={<DashboardHeader title='Beneficiarios' />}
-      footer={<DashboardFooter text='Institución: DIF' />}
+      footer={<DashboardFooter />}
     >
       <Beneficiaries />
     </DashboardMainLayout>
