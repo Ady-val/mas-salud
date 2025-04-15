@@ -136,6 +136,64 @@ export const HMedicineProducts = ({
   ];
 };
 
+export const HMedicineProductsModal = (): TDataHeaders<any>[] => {
+  return [
+    {
+      key: 'name',
+      label: 'Nombre',
+      props: {
+        width: 300,
+      },
+      cell: SimpleModalCell,
+    },
+    {
+      key: 'brand',
+      label: 'Marca',
+      props: {
+        width: 300,
+        align: 'center',
+      },
+      cell: SimpleModalCell,
+    },
+    {
+      key: 'dosage',
+      label: 'Dosis',
+      props: {
+        width: 300,
+        align: 'center',
+      },
+      cell: SimpleModalCell,
+    },
+    {
+      key: 'unit',
+      label: 'Unidad',
+      props: {
+        width: 300,
+        align: 'center',
+      },
+      cell: SimpleModalCell,
+    },
+    {
+      key: 'form',
+      label: 'Forma',
+      props: {
+        width: 300,
+        align: 'center',
+      },
+      cell: SimpleModalCell,
+    },
+    {
+      key: 'presentation',
+      label: 'Presentación',
+      props: {
+        width: 300,
+        align: 'center',
+      },
+      cell: SimpleModalCell,
+    },
+  ];
+};
+
 export const HMedicineInventory = ({
   onView,
 }: {

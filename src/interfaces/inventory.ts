@@ -38,3 +38,12 @@ export interface IInventoryItem {
   expirationDate: string;
   quantity: number;
 }
+
+export interface INewInventoryItem {
+  productId: string;
+  institutionId: string;
+  barcode: string;
+  batchNumber: string;
+  expirationDate: string;
+  quantity: number;
+}

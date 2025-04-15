@@ -25,33 +25,5 @@ export const productSchema: yup.ObjectSchema<Omit<IProduct, 'id'>> = yup
       .string()
       .required('La presentación es requerida')
       .max(50, 'La presentación no puede tener más de 50 caracteres'),
-    quantity: yup
-      .number()
-      .required('La cantidad es requerida')
-      .positive('La cantidad debe ser mayor a 0')
-      .integer('La cantidad debe ser un número entero')
-      .max(999999, 'La cantidad no puede ser mayor a 999999'),
-    expirationDate: yup
-      .string()
-      .required('La fecha de expiración es requerida')
-      .matches(
-        /^\d{4}-\d{2}-\d{2}$/,
-        'La fecha de expiración debe tener el formato YYYY-MM-DD',
-      )
-      .test(
-        'is-future-date',
-        'La fecha de expiración debe ser futura',
-        (value) => {
-          if (!value) return false;
-          const today = new Date();
-          const expirationDate = new Date(value);
-
-          return expirationDate > today;
-        },
-      ),
-    lotNumber: yup
-      .string()
-      .max(50, 'El número de lote no puede tener más de 50 caracteres')
-      .nullable(),
   })
   .required();

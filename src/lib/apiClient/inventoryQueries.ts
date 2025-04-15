@@ -1,6 +1,7 @@
 import {
   IInventoryItemsParams,
   IInventoryParams,
+  INewInventoryItem,
 } from '@mas-salud/interfaces/inventory';
 
 import axiosInstance from './Axios';
@@ -19,6 +20,12 @@ export const fetchInventoryItems = async (params: IInventoryItemsParams) => {
 
 export const deleteInventoryItem = async (id: string) => {
   const response = await axiosInstance.delete(`/inventories/${id}`);
+
+  return response.data;
+};
+
+export const createInventoryItem = async (data: INewInventoryItem) => {
+  const response = await axiosInstance.post('/inventories', data);
 
   return response.data;
 };

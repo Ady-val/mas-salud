@@ -27,7 +27,9 @@ const ModalTable: React.FC<TableProps> = ({
   onPageChange,
   onSelectionChange,
 }) => {
-  const [selectedKeys, setSelectedKeys] = useState<SharedSelection>(new Set());
+  const [selectedKeys, setSelectedKeys] = useState<SharedSelection>(
+    new Set([]),
+  );
   const [page, setPage] = React.useState(currentPage);
   const pages = Math.ceil(count / rowsPerPage);
 
@@ -45,17 +47,23 @@ const ModalTable: React.FC<TableProps> = ({
     [],
   );
 
-  // const handleSelectionChange = (keys: SharedSelection) => {
-  //   setSelectedKeys(keys);
-  //   const selectedKey = Array.from(keys)[0];
-  //   const selectedItem = data.find((item) => item.key === selectedKey);
+  const handleSelectionChange = useCallback(
+    (keys: SharedSelection) => {
+      setSelectedKeys(keys);
 
-  //   if (selectedItem) onSelectionChange(selectedItem);
-  // };
+      if (!keys || (keys instanceof Set && keys.size === 0)) {
+        onSelectionChange?.(null);
+      } else {
+        onSelectionChange?.(
+          typeof keys?.currentKey === 'string' ? keys.currentKey : '',
+        );
+      }
+    },
+    [onSelectionChange],
+  );
 
   const handleChangePage = (page: number) => {
     setPage(page);
-    setSelectedKeys(new Set());
     onPageChange(page);
   };
 
@@ -65,7 +73,8 @@ const ModalTable: React.FC<TableProps> = ({
         aria-label='Controlled table'
         selectedKeys={selectedKeys}
         selectionMode='single'
-        // onSelectionChange={handleSelectionChange}
+        color='primary'
+        onSelectionChange={handleSelectionChange}
         bottomContent={
           pages > 0 ? (
             <div className='flex w-full justify-center'>

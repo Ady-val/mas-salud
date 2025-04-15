@@ -6,6 +6,7 @@ export const QUERY_KEYS = {
   INVENTORY: 'inventory',
   INVENTORIES: 'inventories',
   INVENTORY_ITEMS: 'inventoryItems',
+  NEW_INVENTORY_ITEM: 'newInventoryItem',
   INSTITUTIONS: 'institutions',
   INSTITUTION: 'institution',
 };

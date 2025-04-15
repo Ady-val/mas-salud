@@ -8,13 +8,14 @@ import { Modules } from '@mas-salud/enum/modules';
 
 import InventoryFilters from './InventoryFilters';
 import InventoryData from './InventoryData';
+import InventoryNewItem from './InventoryNewItem';
 
 const Inventory: React.FC = () => {
   const { openModal } = useModal();
   const createPermission = useHasPermission(Action.Read, Modules.InventoryItem);
 
   const handleOpenModal = () => {
-    // openModal(<ProductsFormModal />);
+    openModal(<InventoryNewItem />);
   };
 
   return (
