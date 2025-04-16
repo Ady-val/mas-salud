@@ -91,7 +91,6 @@ const BeneficiariesData: React.FC = () => {
       currentPage={currentPage}
       isLoading={isFetching}
       onPageChange={handlePageChange}
-      onSelectionChange={() => {}}
     />
   );
 };

@@ -1,11 +1,13 @@
 import {
   BeneficiaryCell,
+  KeyValueCell,
   ModalSettingsCell,
   SettingsCell,
   SimpleCell,
   SimpleModalCell,
 } from '@mas-salud/components/molecules/table-cells';
 import { TDataHeaders } from '@mas-salud/types/table';
+import { SPECIALITIES_LABELS } from './specialities';
 
 export const HBeneficiaries = ({
   onView,
@@ -326,7 +328,7 @@ export const HSpecialist = ({
 }): TDataHeaders<any>[] => {
   return [
     {
-      key: 'name',
+      key: 'fullName',
       label: 'Nombre',
       props: {
         width: 300,
@@ -334,12 +336,12 @@ export const HSpecialist = ({
       cell: SimpleCell,
     },
     {
-      key: 'profession',
-      label: 'Profesión ',
+      key: 'speciality',
+      label: 'Especialidad',
       props: {
         width: 300,
       },
-      cell: SimpleCell,
+      cell: (value, _item) => KeyValueCell(value, SPECIALITIES_LABELS),
     },
     {
       key: 'institution',
@@ -356,9 +358,9 @@ export const HSpecialist = ({
         align: 'end',
         className: 'w-[5rem]',
       },
-      cell: (value, _item) =>
+      cell: (_value, item) =>
         SettingsCell({
-          value,
+          value: item,
           onView,
           onEdit,
           onDelete,

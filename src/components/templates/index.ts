@@ -3,3 +3,4 @@ export { default as Login } from './Login';
 export * from './dashboard';
 export * from './beneficiaries';
 export * from './medicines';
+export * from './medical-specialists';

@@ -6,6 +6,7 @@ import productsFiltersReducer from './slices/products';
 import inventoryFiltersReducer from './slices/inventory';
 import errorReducer from './slices/errorSlice';
 import permissionsReducer from './slices/permissions';
+import medicalSpecialistReducer from './slices/medicalSpecialist';
 
 export const store = configureStore({
   reducer: {
@@ -14,6 +15,7 @@ export const store = configureStore({
     filters: filtersReducer,
     productsFilters: productsFiltersReducer,
     inventoryFilters: inventoryFiltersReducer,
+    medicalSpecialistFilters: medicalSpecialistReducer,
     error: errorReducer,
   },
 });

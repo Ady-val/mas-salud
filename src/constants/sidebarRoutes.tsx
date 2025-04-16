@@ -27,11 +27,12 @@ export const sidebarRoutes: SidebarRoute[] = [
     icon: <FaPills />,
     module: Modules.Products,
   },
-  // {
-  //   title: 'Especialistas',
-  //   path: '/dashboard/specialist',
-  //   icon: <FaUserDoctor />,
-  // },
+  {
+    title: 'Especialistas',
+    path: '/dashboard/specialist',
+    icon: <FaUserDoctor />,
+    module: Modules.MedicalSpecialists,
+  },
   // {
   //   title: 'Configuración',
   //   path: '/dashboard/settings',

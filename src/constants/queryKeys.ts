@@ -9,4 +9,5 @@ export const QUERY_KEYS = {
   NEW_INVENTORY_ITEM: 'newInventoryItem',
   INSTITUTIONS: 'institutions',
   INSTITUTION: 'institution',
+  MEDICAL_SPECIALISTS: 'medicalSpecialists',
 };

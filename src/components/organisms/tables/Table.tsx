@@ -25,7 +25,6 @@ const SimpleTable: React.FC<TableProps> = ({
   currentPage = 1,
   isLoading = false,
   onPageChange,
-  onSelectionChange,
 }) => {
   const [selectedKeys, setSelectedKeys] = useState<SharedSelection>(new Set());
   const [page, setPage] = React.useState(currentPage);

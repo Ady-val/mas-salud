@@ -8,5 +8,5 @@ export interface TableProps {
   currentPage?: number;
   isLoading?: boolean;
   onPageChange: (page: number) => void;
-  onSelectionChange: (item: string | null) => void;
+  onSelectionChange?: (item: string | null) => void;
 }
