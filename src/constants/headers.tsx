@@ -1,6 +1,7 @@
 import {
   BeneficiaryCell,
   KeyValueCell,
+  ModalBeneficiaryCell,
   ModalSettingsCell,
   SettingsCell,
   SimpleCell,
@@ -190,6 +191,56 @@ export const HMedicineProductsModal = (): TDataHeaders<any>[] => {
       props: {
         width: 300,
         align: 'center',
+      },
+      cell: SimpleModalCell,
+    },
+  ];
+};
+
+export const HBeneficiariesModal = (): TDataHeaders<any>[] => {
+  return [
+    {
+      key: 'name',
+      label: 'Nombre',
+      props: {
+        width: 300,
+      },
+      cell: ModalBeneficiaryCell,
+    },
+    {
+      key: 'curp',
+      label: 'CURP',
+      props: {
+        width: 300,
+      },
+      cell: SimpleModalCell,
+    },
+  ];
+};
+
+export const HBeneficiaryHistoryModal = (): TDataHeaders<any>[] => {
+  return [
+    {
+      key: 'medicine',
+      label: 'Medicamento',
+      props: {
+        width: 300,
+      },
+      cell: SimpleModalCell,
+    },
+    {
+      key: 'date',
+      label: 'Fecha',
+      props: {
+        width: 300,
+      },
+      cell: SimpleModalCell,
+    },
+    {
+      key: 'institution',
+      label: 'Institución',
+      props: {
+        width: 300,
       },
       cell: SimpleModalCell,
     },

@@ -32,7 +32,7 @@ const config = {
           secondary: '#3A3838',
           card: '#FFFFFF',
         },
-        textHeading: {
+        heading: {
           primary: '#004B93',
           secondary: '#374151',
         },

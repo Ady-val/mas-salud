@@ -5,6 +5,7 @@ export interface IBeneficiariesParams {
   lastName?: string;
   gender?: 'Male' | 'Female';
   curp?: string;
+  identificationCode?: string;
 }
 
 export interface IBeneficiaryFilterState

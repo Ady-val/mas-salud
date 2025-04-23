@@ -4,3 +4,4 @@ export * from './dashboard';
 export * from './beneficiaries';
 export * from './medicines';
 export * from './medical-specialists';
+export * from './medication-despensing';

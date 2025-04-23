@@ -4,3 +4,4 @@ export * from './SettingsCell';
 export * from './SimpleModalCell';
 export * from './ModalSettingsCell';
 export * from './KeyValueCell';
+export * from './ModalBeneficiaryCell';

@@ -17,7 +17,7 @@ const HomePage: React.FC = () => {
     >
       <div className='w-full h-full flex flex-col items-center justify-center main-background p-10'>
         <div className='h-1/3 flex justify-center items-center'>
-          <div className='text-[5rem] text-textHeading-primary raleway font-bold'>
+          <div className='text-[5rem] text-heading-primary raleway font-bold'>
             Bienvenido a la plataforma
           </div>
         </div>

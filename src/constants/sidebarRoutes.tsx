@@ -1,5 +1,11 @@
 import { Modules } from '@mas-salud/enum/modules';
-import { FaHouse, FaPills, FaUser, FaUserDoctor } from 'react-icons/fa6';
+import {
+  FaHandHoldingMedical,
+  FaHouse,
+  FaPills,
+  FaUser,
+  FaUserDoctor,
+} from 'react-icons/fa6';
 
 interface SidebarRoute {
   title: string;
@@ -32,6 +38,12 @@ export const sidebarRoutes: SidebarRoute[] = [
     path: '/dashboard/specialist',
     icon: <FaUserDoctor />,
     module: Modules.MedicalSpecialists,
+  },
+  {
+    title: 'Entrega de Medicamentos',
+    path: '/dashboard/medication-dispensing',
+    icon: <FaHandHoldingMedical />,
+    module: Modules.MedicationDispensing,
   },
   // {
   //   title: 'Configuración',
