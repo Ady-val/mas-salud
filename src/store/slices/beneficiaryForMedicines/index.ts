@@ -10,7 +10,8 @@ const beneficiaryForMedicinesSlice = createSlice({
   reducers,
 });
 
+export * from './hooks';
 export * from './selectors';
-export const { setBeneficiaryForMedicines, deleteBeneficiary } =
+export const { setBeneficiaryForMedicines, deleteBeneficiaryForMedicines } =
   beneficiaryForMedicinesSlice.actions;
 export default beneficiaryForMedicinesSlice.reducer;

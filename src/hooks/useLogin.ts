@@ -5,6 +5,8 @@ import { isAxiosError } from 'axios';
 import { useRouter } from 'next/navigation';
 import axiosInstance from '@mas-salud/lib/apiClient/Axios';
 
+import { useToast } from './useToast';
+
 interface LoginRequest {
   username: string;
   password: string;
@@ -25,6 +27,7 @@ const login = async ({ username, password }: LoginRequest): Promise<any> => {
 
 export const useLogin = () => {
   const router = useRouter();
+  const { errorToast } = useToast();
 
   return useMutation({
     mutationFn: login,
@@ -35,16 +38,15 @@ export const useLogin = () => {
     onError: (error) => {
       if (isAxiosError(error)) {
         if (error?.response?.status === 401) {
-          console.error('Credenciales incorrectas.');
-          // Actualiza el estado para mostrar un mensaje al usuario
+          errorToast(
+            'Error al iniciar sesión. Por favor, verifique sus credenciales.',
+          );
         } else {
-          console.error('Error en la solicitud:', error?.response?.data);
+          errorToast('Error en la solicitud:', error?.response?.data);
         }
       } else {
-        console.error('Error:', error.message);
+        errorToast('Error:', error.message);
       }
-
-      throw error;
     },
   });
 };

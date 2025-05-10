@@ -1,3 +1,4 @@
+'use client';
 import {
   BeneficiaryCell,
   KeyValueCell,
@@ -5,9 +6,11 @@ import {
   ModalSettingsCell,
   SettingsCell,
   SimpleCell,
+  SimpleDateModaCell,
   SimpleModalCell,
 } from '@mas-salud/components/molecules/table-cells';
 import { TDataHeaders } from '@mas-salud/types/table';
+
 import { SPECIALITIES_LABELS } from './specialities';
 
 export const HBeneficiaries = ({
@@ -221,7 +224,15 @@ export const HBeneficiariesModal = (): TDataHeaders<any>[] => {
 export const HBeneficiaryHistoryModal = (): TDataHeaders<any>[] => {
   return [
     {
-      key: 'medicine',
+      key: 'ticketNumber',
+      label: 'Ticket',
+      props: {
+        width: 200,
+      },
+      cell: SimpleModalCell,
+    },
+    {
+      key: 'product',
       label: 'Medicamento',
       props: {
         width: 300,
@@ -229,10 +240,11 @@ export const HBeneficiaryHistoryModal = (): TDataHeaders<any>[] => {
       cell: SimpleModalCell,
     },
     {
-      key: 'date',
-      label: 'Fecha',
+      key: 'quantity',
+      label: 'Cantidad',
       props: {
-        width: 300,
+        width: 100,
+        align: 'center',
       },
       cell: SimpleModalCell,
     },
@@ -240,9 +252,18 @@ export const HBeneficiaryHistoryModal = (): TDataHeaders<any>[] => {
       key: 'institution',
       label: 'Institución',
       props: {
-        width: 300,
+        width: 100,
+        align: 'center',
       },
       cell: SimpleModalCell,
+    },
+    {
+      key: 'createdAt',
+      label: 'Fecha',
+      props: {
+        width: 300,
+      },
+      cell: SimpleDateModaCell,
     },
   ];
 };
@@ -297,6 +318,56 @@ export const HMedicineInventory = ({
           value: item,
           onView,
         }),
+    },
+  ];
+};
+
+export const HMedicineInventoryItemsModal = (): TDataHeaders<any>[] => {
+  return [
+    {
+      key: 'barcode',
+      label: 'Código de Barras',
+      props: {
+        align: 'center',
+        width: 300,
+      },
+      cell: SimpleModalCell,
+    },
+    {
+      key: 'product',
+      label: 'Nombre',
+      props: {
+        align: 'center',
+        width: 300,
+      },
+      cell: SimpleModalCell,
+    },
+    {
+      key: 'batchNumber',
+      label: 'Número de Lote',
+      props: {
+        align: 'center',
+        width: 300,
+      },
+      cell: SimpleModalCell,
+    },
+    {
+      key: 'currentQuantity',
+      label: 'Disponible',
+      props: {
+        align: 'center',
+        width: 300,
+      },
+      cell: SimpleModalCell,
+    },
+    {
+      key: 'expirationDate',
+      label: 'Fecha de Vencimiento',
+      props: {
+        align: 'center',
+        width: 300,
+      },
+      cell: SimpleModalCell,
     },
   ];
 };

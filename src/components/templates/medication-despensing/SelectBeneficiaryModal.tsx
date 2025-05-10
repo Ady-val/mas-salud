@@ -16,6 +16,8 @@ import {
 } from '@mas-salud/constants/headers';
 import { useModal } from '@mas-salud/context/ModalContext';
 import { useBeneficiaries } from '@mas-salud/hooks/beneficiaries/useBeneficiaries';
+import { useTicketHistory } from '@mas-salud/hooks/ticket/useTicketHistory';
+import { useToast } from '@mas-salud/hooks/useToast';
 import { IBeneficiary } from '@mas-salud/interfaces/beneficiaries';
 import { useEffect, useRef, useState } from 'react';
 import { FaSistrix } from 'react-icons/fa6';
@@ -63,7 +65,10 @@ const SelectBenficiaryModal = ({
         />
       )}
       {step === 2 && selectedBeneficiary && (
-        <BeneficiaryInfo beneficiary={selectedBeneficiary} />
+        <BeneficiaryInfo
+          key='beneficiaryInfo'
+          beneficiary={selectedBeneficiary}
+        />
       )}
       <ModalFooter>
         <ModalButton text='Cancelar' color='secondary' onClick={closeModal} />
@@ -148,7 +153,15 @@ const FindAndSelectBeneficiary = ({
 };
 
 const BeneficiaryInfo = ({ beneficiary }: { beneficiary: IBeneficiary }) => {
-  const [currentPage, setCurrentPage] = useState(1);
+  const { errorToast } = useToast();
+  const { data, isFetching, error } = useTicketHistory(beneficiary.id || '');
+
+  useEffect(() => {
+    if (error) {
+      errorToast('Error al obtener el historial de tickets');
+      console.error('Error fetching ticket history:', error);
+    }
+  }, [error]);
 
   return (
     <div className='grid grid-cols-2 gap-3 px-6 text-white'>
@@ -170,14 +183,12 @@ const BeneficiaryInfo = ({ beneficiary }: { beneficiary: IBeneficiary }) => {
       <div className='col-span-full'>
         <ModalTable
           headers={HBeneficiaryHistoryModal()}
-          data={[]}
-          count={0}
-          // data={fetchedData?.data || []}
-          // count={fetchedData?.count || 0}
-          rowsPerPage={siteConfig.queries.modalLimit}
-          currentPage={currentPage}
-          // isLoading={isFetching}
-          onPageChange={(page: number) => setCurrentPage(page)}
+          data={data || []}
+          count={data ? data.length : 0}
+          rowsPerPage={data ? data.length : 0}
+          currentPage={1}
+          isLoading={isFetching}
+          onPageChange={() => {}}
         />
       </div>
     </div>

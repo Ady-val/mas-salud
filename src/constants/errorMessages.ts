@@ -7,4 +7,6 @@ export const translateRequestErrorMessages: ErrorMessages = {
     'La contraseña debe tener al menos 8 caracteres',
   'Invalid credentials':
     'Usuario o contraseña incorrectos. Por favor, inténtelo de nuevo.',
+  'Product not found in inventory':
+    'El producto no se encuentra en el inventario',
 };

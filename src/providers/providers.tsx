@@ -37,7 +37,11 @@ export function Providers({ children, themeProps }: ProvidersProps) {
           <NextThemesProvider {...themeProps}>
             <ModalProvider>
               <LoadingProvider>
-                <ToastProvider placement='top-center' />
+                <ToastProvider
+                  placement='top-center'
+                  maxVisibleToasts={3}
+                  toastOffset={3}
+                />
                 {children}
               </LoadingProvider>
             </ModalProvider>

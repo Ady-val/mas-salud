@@ -41,8 +41,7 @@
   @apply
   bg-main
   text-primary
-  hover:bg-main
-  shadow-inner-lg-left-top;
+  hover:bg-main;
 }
 
 .main-background {

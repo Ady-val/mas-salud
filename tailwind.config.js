@@ -23,6 +23,7 @@ const config = {
       },
       colors: {
         main: '#e5e7e9',
+        success: '#12A150',
         primary: '#37327D',
         secondary: '#544E95',
         tertiary: '#DAEEFF',

@@ -10,4 +10,6 @@ export const QUERY_KEYS = {
   INSTITUTIONS: 'institutions',
   INSTITUTION: 'institution',
   MEDICAL_SPECIALISTS: 'medicalSpecialists',
+  ITEM_BY_BARCODE: 'itemByBarcode',
+  TICKET_HISTORY: 'ticketHistory',
 };

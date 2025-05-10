@@ -44,7 +44,6 @@ const MedicalSpecialistsData: React.FC = () => {
   }, [error]);
 
   const onView = (value: any) => {
-    console.log(value);
     openModal(
       <MedicalSpecialistFormModal
         onlyView={true}

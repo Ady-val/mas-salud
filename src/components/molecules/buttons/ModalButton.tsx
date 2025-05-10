@@ -36,7 +36,7 @@ const ModalButton: React.FC<ButtonProps> = ({
       radius='md'
       variant='solid'
       color={color}
-      className={`${className}`}
+      className={`${color === 'success' && 'text-white'} ${className}`}
       onPress={onClick}
       disabled={disabled}
       isLoading={isLoading}

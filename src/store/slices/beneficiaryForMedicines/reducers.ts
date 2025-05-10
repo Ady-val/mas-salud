@@ -23,8 +23,12 @@ const setBeneficiaryForMedicines: CaseReducer<
   return { ...state, ...action.payload };
 };
 
-const deleteBeneficiary: CaseReducer<IBeneficiary> = (state) => {
+const deleteBeneficiaryForMedicines: CaseReducer<IBeneficiary> = (state) => {
   return { ...state, ...initialState };
 };
 
-export { initialState, setBeneficiaryForMedicines, deleteBeneficiary };
+export {
+  initialState,
+  setBeneficiaryForMedicines,
+  deleteBeneficiaryForMedicines,
+};

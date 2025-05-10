@@ -17,8 +17,7 @@ const Login: React.FC = () => {
   const [isInvalid, setIsInvalid] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
-  const mutation = useLogin();
-  const { isError, error, mutateAsync: login } = mutation;
+  const { isError, error, mutateAsync: login } = useLogin();
 
   const handleLogin = async () => {
     setIsLoading(true);

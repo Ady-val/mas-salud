@@ -12,7 +12,10 @@ import InventoryNewItem from './InventoryNewItem';
 
 const Inventory: React.FC = () => {
   const { openModal } = useModal();
-  const createPermission = useHasPermission(Action.Read, Modules.InventoryItem);
+  const createPermission = useHasPermission(
+    Action.Create,
+    Modules.InventoryItem,
+  );
 
   const handleOpenModal = () => {
     openModal(<InventoryNewItem />);

@@ -1,4 +1,5 @@
 import {
+  IInventoryItem,
   IInventoryItemsParams,
   IInventoryParams,
   INewInventoryItem,
@@ -26,6 +27,14 @@ export const deleteInventoryItem = async (id: string) => {
 
 export const createInventoryItem = async (data: INewInventoryItem) => {
   const response = await axiosInstance.post('/inventories', data);
+
+  return response.data;
+};
+
+export const findInventoryItemByBarcode = async (barcode: string) => {
+  const response = await axiosInstance.get<IInventoryItem>(
+    `/inventories/barcode/${barcode}`,
+  );
 
   return response.data;
 };

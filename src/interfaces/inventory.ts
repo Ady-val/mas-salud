@@ -10,6 +10,7 @@ export interface IInventoryItemsParams {
   page?: number;
   limit?: number;
   name?: string;
+  barcode?: string;
   productId?: string;
   institutionId?: string;
 }
@@ -37,6 +38,7 @@ export interface IInventoryItem {
   batchNumber: string;
   expirationDate: string;
   quantity: number;
+  currentQuantity: number;
 }
 
 export interface INewInventoryItem {
