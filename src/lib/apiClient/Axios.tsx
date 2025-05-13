@@ -5,7 +5,8 @@ import axios from 'axios';
 const axiosInstance = axios.create({
   // baseURL: process.env.NEXT_PUBLIC_API_URL,
   // baseURL: 'http://adal.tailba64d6.ts.net:4000',
-  baseURL: 'http://localhost:4000',
+  baseURL: 'http://mas-salud.tailba64d6.ts.net:4000',
+  // baseURL: 'http://localhost:4000',
   withCredentials: true,
 });
 
