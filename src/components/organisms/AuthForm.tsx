@@ -1,5 +1,3 @@
-'use client';
-
 import React from 'react';
 import { Card, Divider } from '@mas-salud/components/atoms';
 import { Button, Input } from '@mas-salud/components/molecules';

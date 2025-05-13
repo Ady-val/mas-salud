@@ -18,6 +18,7 @@ const login = async ({ username, password }: LoginRequest): Promise<any> => {
       username,
       password,
     });
+    console.log('Success respoonse:', username);
 
     return response.data;
   } catch (error) {
@@ -32,8 +33,9 @@ export const useLogin = () => {
   return useMutation({
     mutationFn: login,
     onSuccess: (data) => {
+      console.log('Success:', data);
       localStorage.setItem('authToken', data['accessToken']);
-      router.push('/dashboard');
+      window.location.href = '/dashboard';
     },
     onError: (error) => {
       if (isAxiosError(error)) {

@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { AuthLayout, Login } from '@mas-salud/components/templates';
 

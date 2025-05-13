@@ -26,13 +26,14 @@ RUN pnpm install --prod --frozen-lockfile
 
 # 6) Copia los artefactos de build
 COPY --from=builder /usr/src/app/.next ./.next
-COPY --from=builder /usr/src/app/public ./public
+COPY --from=builder /usr/src/app/src/public ./public
 COPY --from=builder /usr/src/app/next.config.js ./
 # Si tienes tsconfig.build.json o archivos de entorno en `/public` u otro lugar, cópialos aquí
 
 # 7) Variables y arranque
 ENV NODE_ENV=production
-ENV PORT=3000
-EXPOSE 3000
+ENV PORT=80
+ENV NEXT_PUBLIC_API_URL=adal.tailba64d6.ts.net:4000
+EXPOSE 80
 
 CMD ["pnpm", "start"]

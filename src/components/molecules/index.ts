@@ -1,6 +1,6 @@
 export * from './card';
 export * from './chips';
-export * from './select';
+export * from './Select';
 export * from './modals';
 export * from './buttons';
 export * from './inputs';
