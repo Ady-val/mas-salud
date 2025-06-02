@@ -1,20 +1,20 @@
-import { IUser } from '@mas-salud/interfaces/user';
+import { ILoggedUser } from '@mas-salud/interfaces/user';
 import { CaseReducer, PayloadAction } from '@reduxjs/toolkit';
 
-const initialState: IUser = {
+const initialState: ILoggedUser = {
   name: '',
   username: '',
   institution: '',
 };
 
-const setUser: CaseReducer<IUser, PayloadAction<IUser>> = (
+const setUser: CaseReducer<ILoggedUser, PayloadAction<ILoggedUser>> = (
   state,
-  action: PayloadAction<Partial<IUser>>,
+  action: PayloadAction<Partial<ILoggedUser>>,
 ) => {
   return { ...state, ...action.payload };
 };
 
-const resetUser: CaseReducer<IUser> = (state) => {
+const resetUser: CaseReducer<ILoggedUser> = (state) => {
   return { ...state, ...initialState };
 };
 

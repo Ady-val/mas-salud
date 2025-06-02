@@ -1,11 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { PureAbility } from '@casl/ability';
+import { MongoAbility } from '@casl/ability';
 import { Action } from '@mas-salud/enum/actions';
 import { Modules } from '@mas-salud/enum/modules';
 import { PayloadAction } from '@reduxjs/toolkit';
 
 export type Subjects = Modules | 'all';
-export type AppAbility = PureAbility<[Action, Subjects]>;
+export type AppAbility = MongoAbility<[Action, Subjects]>;
 
 interface PermissionsState {
   rules: AppAbility['rules'];

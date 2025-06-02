@@ -22,7 +22,7 @@ const DashboardMainLayout: React.FC<MainLayoutProps> = ({
   const { ability } = useAbilityPermissions();
   const permissions = ability.actionsFor(systemModule);
 
-  if (!isReadPermission(permissions)) {
+  if (!isReadPermission(permissions) && systemModule !== Modules.Dashboard) {
     redirect('/dashboard');
   }
 

@@ -322,6 +322,102 @@ export const HMedicineInventory = ({
   ];
 };
 
+export const HUsers = ({
+  onView,
+  onEdit,
+  onDelete,
+}: {
+  onView: (value: string) => void;
+  onEdit: (value: string) => void;
+  onDelete: (value: string) => void;
+}): TDataHeaders<any>[] => {
+  return [
+    {
+      key: 'name',
+      label: 'Nombre',
+      props: {
+        width: 300,
+      },
+      cell: SimpleCell,
+    },
+    {
+      key: 'username',
+      label: 'Nombre de Usuario',
+      props: {
+        width: 300,
+      },
+      cell: SimpleCell,
+    },
+    {
+      key: 'role',
+      label: 'Rol',
+      props: {
+        width: 300,
+      },
+      cell: SimpleCell,
+    },
+    {
+      key: 'institution',
+      label: 'Institución',
+      props: {
+        width: 300,
+      },
+      cell: SimpleCell,
+    },
+    {
+      key: 'id',
+      label: 'Configuración',
+      props: {
+        align: 'end',
+        className: 'w-[5rem]',
+      },
+      cell: (_value, item) =>
+        SettingsCell({
+          value: item,
+          onView,
+          onEdit,
+          onDelete,
+        }),
+    },
+  ];
+};
+
+export const HRoles = ({
+  onView,
+  onEdit,
+  onDelete,
+}: {
+  onView: (value: string) => void;
+  onEdit: (value: string) => void;
+  onDelete: (value: string) => void;
+}): TDataHeaders<any>[] => {
+  return [
+    {
+      key: 'name',
+      label: 'Nombre',
+      props: {
+        width: 300,
+      },
+      cell: SimpleCell,
+    },
+    {
+      key: 'id',
+      label: 'Configuración',
+      props: {
+        align: 'end',
+        className: 'w-[5rem]',
+      },
+      cell: (_value, item) =>
+        SettingsCell({
+          value: item,
+          onView,
+          onEdit,
+          onDelete,
+        }),
+    },
+  ];
+};
+
 export const HMedicineInventoryItemsModal = (): TDataHeaders<any>[] => {
   return [
     {

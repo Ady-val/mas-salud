@@ -1,4 +1,4 @@
-import { FormalModalProps } from '@mas-salud/interfaces/formModalProps';
+import { FormModalProps } from '@mas-salud/interfaces/formModalProps';
 import { IInventory } from '@mas-salud/interfaces/inventory';
 import { useModal } from '@mas-salud/context/ModalContext';
 import {
@@ -21,7 +21,7 @@ export default function InventoryItemsModal({
   onlyView,
   obj,
   onDelete,
-}: FormalModalProps<IInventory>) {
+}: FormModalProps<IInventory>) {
   const { closeModal } = useModal();
   const [currentPage, setCurrentPage] = useState(1);
   const { errorToast } = useToast();

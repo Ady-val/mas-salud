@@ -12,4 +12,7 @@ export const QUERY_KEYS = {
   MEDICAL_SPECIALISTS: 'medicalSpecialists',
   ITEM_BY_BARCODE: 'itemByBarcode',
   TICKET_HISTORY: 'ticketHistory',
+  USERS: 'users',
+  ROLES_OPTIONS: 'rolesOptions',
+  ROLES: 'roles',
 };

@@ -19,7 +19,7 @@ import { EProductForm, EProductUnit } from '@mas-salud/enum/products';
 import { errorFormat } from '@mas-salud/helpers/errorFormt';
 import { useProductMutation } from '@mas-salud/hooks/products/useProductMutate';
 import { useToast } from '@mas-salud/hooks/useToast';
-import { FormalModalProps } from '@mas-salud/interfaces/formModalProps';
+import { FormModalProps } from '@mas-salud/interfaces/formModalProps';
 import { IProduct } from '@mas-salud/interfaces/products';
 import { productSchema } from '@mas-salud/schemas/productsSchema';
 import { useQueryClient } from '@tanstack/react-query';
@@ -28,7 +28,7 @@ import { useForm } from 'react-hook-form';
 export default function ProductsFormModal({
   onlyView,
   obj,
-}: FormalModalProps<IProduct>) {
+}: FormModalProps<IProduct>) {
   const { errorToast, successToast } = useToast();
   const { closeModal } = useModal();
   const { showLoading, hideLoading } = useLoading();

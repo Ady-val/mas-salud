@@ -25,9 +25,16 @@ const getPathLabel = (tabs: TabItem[]) => {
   );
 };
 
-function getActiveTab(pathname: string) {
-  if (pathname.includes('/products')) return 'products';
-  if (pathname.includes('/inventory')) return 'inventory';
+function getActiveTab(pathname: string, tabs: NavigatorTabsProps['tabs']) {
+  if (!tabs || tabs.length === 0) {
+    return '';
+  }
+
+  const activeTab = tabs.find((tab) => pathname.includes(tab.href));
+
+  if (activeTab) {
+    return activeTab.id;
+  }
 
   return '';
 }
@@ -39,13 +46,13 @@ const NavigatorTabs = ({ tabs }: NavigatorTabsProps) => {
   return (
     <div className='flex w-full justify-between'>
       <div className='header-subtitle'>
-        {pathLabel[getActiveTab(pathname) as keyof typeof pathLabel] ||
+        {pathLabel[getActiveTab(pathname, tabs) as keyof typeof pathLabel] ||
           'Cargando...'}
       </div>
       <Tabs
         aria-label='Dynamic tabs'
         color='secondary'
-        selectedKey={getActiveTab(pathname)}
+        selectedKey={getActiveTab(pathname, tabs)}
       >
         {tabs.map((tab) => (
           <Tab

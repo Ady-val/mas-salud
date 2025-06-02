@@ -21,7 +21,6 @@ const Login: React.FC = () => {
 
   const handleLogin = async () => {
     setIsLoading(true);
-    console.log('Logging in with:', username);
     try {
       await login({ username, password });
     } catch (err) {

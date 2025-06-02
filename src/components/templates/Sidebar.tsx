@@ -5,6 +5,7 @@ import { useAbilityPermissions } from '@mas-salud/store/slices/permissions';
 import { FaPowerOff } from 'react-icons/fa6';
 import { useLogout } from '@mas-salud/hooks/session/useLogout';
 import { useToast } from '@mas-salud/hooks/useToast';
+import { Modules } from '@mas-salud/enum/modules';
 
 import { NavLink } from '../molecules';
 
@@ -26,7 +27,11 @@ const SideBar = () => {
   const permitedRoutes = sidebarRoutes.filter((route) => {
     const permissions = ability.actionsFor(route.module);
 
-    return permissions.includes('read') || permissions.includes('manage');
+    return (
+      permissions.includes('read') ||
+      permissions.includes('manage') ||
+      route.module === Modules.Dashboard
+    );
   });
 
   return (

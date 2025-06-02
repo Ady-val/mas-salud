@@ -2,7 +2,6 @@
 
 import { useMutation } from '@tanstack/react-query';
 import { isAxiosError } from 'axios';
-import { useRouter } from 'next/navigation';
 import axiosInstance from '@mas-salud/lib/apiClient/Axios';
 
 import { useToast } from './useToast';
@@ -18,7 +17,6 @@ const login = async ({ username, password }: LoginRequest): Promise<any> => {
       username,
       password,
     });
-    console.log('Success respoonse:', username);
 
     return response.data;
   } catch (error) {
@@ -27,14 +25,11 @@ const login = async ({ username, password }: LoginRequest): Promise<any> => {
 };
 
 export const useLogin = () => {
-  const router = useRouter();
   const { errorToast } = useToast();
 
   return useMutation({
     mutationFn: login,
-    onSuccess: (data) => {
-      console.log('Success:', data);
-      localStorage.setItem('authToken', data['accessToken']);
+    onSuccess: () => {
       window.location.href = '/dashboard';
     },
     onError: (error) => {

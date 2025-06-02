@@ -3,7 +3,7 @@
 import { fetchMe } from '@mas-salud/lib/apiClient';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { PureAbility } from '@casl/ability';
+import { createMongoAbility, PureAbility } from '@casl/ability';
 import { Modules } from '@mas-salud/enum/modules';
 import { Action } from '@mas-salud/enum/actions';
 
@@ -51,7 +51,7 @@ export const useLoadPermissions = () => {
 
 export const useAbilityPermissions = () => {
   const rules = useSelector(permissionsSelector);
-  const ability = new PureAbility(rules);
+  const ability = createMongoAbility(rules);
 
   return { ability };
 };

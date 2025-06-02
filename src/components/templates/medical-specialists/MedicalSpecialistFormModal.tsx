@@ -9,7 +9,7 @@ import {
   ModalHeader,
 } from '@mas-salud/components/atoms';
 import { useToast } from '@mas-salud/hooks/useToast';
-import { FormalModalProps } from '@mas-salud/interfaces/formModalProps';
+import { FormModalProps } from '@mas-salud/interfaces/formModalProps';
 import { IMedicalSpecialist } from '@mas-salud/interfaces/medicalSpecialists';
 import {
   ModalButton,
@@ -31,7 +31,7 @@ import { QUERY_KEYS } from '@mas-salud/constants/queryKeys';
 const MedicalSpecialistFormModal = ({
   onlyView,
   obj,
-}: FormalModalProps<IMedicalSpecialist>) => {
+}: FormModalProps<IMedicalSpecialist>) => {
   const { errorToast, successToast } = useToast();
   const { closeModal } = useModal();
   const { showLoading, hideLoading } = useLoading();

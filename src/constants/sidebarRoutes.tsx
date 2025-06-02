@@ -5,6 +5,7 @@ import {
   FaPills,
   FaUser,
   FaUserDoctor,
+  FaUserGear,
 } from 'react-icons/fa6';
 
 interface SidebarRoute {
@@ -45,9 +46,10 @@ export const sidebarRoutes: SidebarRoute[] = [
     icon: <FaHandHoldingMedical />,
     module: Modules.MedicationDispensing,
   },
-  // {
-  //   title: 'Configuración',
-  //   path: '/dashboard/settings',
-  //   icon: <FaScrewdriverWrench />,
-  // },
+  {
+    title: 'Usuarios',
+    path: '/dashboard/users/profiles',
+    icon: <FaUserGear />,
+    module: Modules.Users,
+  },
 ];

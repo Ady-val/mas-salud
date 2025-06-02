@@ -12,3 +12,4 @@ export * from './Inputs';
 export * from './Tooltips';
 export * from './tabs';
 export * from './date-picker';
+export * from './checkbox';

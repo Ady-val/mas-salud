@@ -2,77 +2,70 @@
 
 import { SimpleTable } from '@mas-salud/components/organisms';
 import { siteConfig } from '@mas-salud/config/site';
-import { HMedicineProducts } from '@mas-salud/constants/headers';
+import { HUsers } from '@mas-salud/constants/headers';
 import { useModal } from '@mas-salud/context/ModalContext';
-import { useProducts } from '@mas-salud/hooks/products/useProducts';
+import { Modules } from '@mas-salud/enum/modules';
+import { useUsers } from '@mas-salud/hooks/users/useUsers';
 import { useToast } from '@mas-salud/hooks/useToast';
-import { useProductsFilters } from '@mas-salud/store/slices/products';
+import { useHasModulePermissions } from '@mas-salud/store/slices/permissions';
 import { isAxiosError } from 'axios';
 import { useEffect, useState } from 'react';
-import { IProduct } from '@mas-salud/interfaces/products';
-import { useHasModulePermissions } from '@mas-salud/store/slices/permissions';
-import { Modules } from '@mas-salud/enum/modules';
 
-import ProductsFormModal from './ProductsFormModal';
-import ProductDeleteAlertModal from './ProductsDeleteAlertModal';
+import ProfileFormModal from './ProfileFormModal';
+import ProfileDeleteAlertModal from './ProfileDeleteAlertModal';
 
-const ProductsData: React.FC = () => {
+const UsersData: React.FC = () => {
   const { openModal } = useModal();
   const { errorToast } = useToast();
   const [currentPage, setCurrentPage] = useState(1);
-  const { name, brand, form, unit } = useProductsFilters();
-  const can = useHasModulePermissions(Modules.Products);
+  const can = useHasModulePermissions(Modules.Users);
 
   const {
     data: fetchedData,
     error,
     isFetching,
-  } = useProducts({
+  } = useUsers({
     page: currentPage,
     limit: siteConfig.queries.defaultLimit,
-    name: name || undefined,
-    brand: brand || undefined,
-    form: form || undefined,
-    unit: unit || undefined,
   });
 
   useEffect(() => {
     if (isAxiosError(error)) {
       errorToast(
-        `Error al buscar productos, intente mas tarde`,
+        `Error al buscar usuario, intente mas tarde`,
         `${error.status}: ${error.message}`,
       );
     }
   }, [error]);
 
   const onView = (value: any) => {
-    openModal(<ProductsFormModal onlyView={true} obj={value as IProduct} />);
+    openModal(<ProfileFormModal onlyView={true} obj={value} />);
   };
 
   const onEdit = (value: any) => {
     if (!can.update) {
-      errorToast(`Acceso denegado`, `No tienes permisos para editar productos`);
+      errorToast(`Acceso denegado`, `No tienes permisos para editar usuarios`);
 
       return;
     }
-    openModal(<ProductsFormModal obj={value as IProduct} />);
+    openModal(<ProfileFormModal obj={value} />);
   };
 
   const onDelete = (value: any) => {
     if (!can.delete) {
       errorToast(
         `Acceso denegado`,
-        `No tienes permisos para eliminar productos`,
+        `No tienes permisos para eliminar usuarios`,
       );
 
       return;
     }
-    openModal(<ProductDeleteAlertModal obj={value as IProduct} />);
+    openModal(<ProfileDeleteAlertModal obj={value} />);
   };
 
   return (
     <SimpleTable
-      headers={HMedicineProducts({
+      headers={HUsers({
         onView,
         onEdit,
         onDelete,
@@ -88,4 +81,4 @@ const ProductsData: React.FC = () => {
   );
 };
 
-export default ProductsData;
+export default UsersData;

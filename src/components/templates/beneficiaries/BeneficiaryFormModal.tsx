@@ -21,13 +21,13 @@ import {
 import { useToast } from '@mas-salud/hooks/useToast';
 import { QUERY_KEYS } from '@mas-salud/constants/queryKeys';
 import { beneficiarySchema } from '@mas-salud/schemas/beneficiarySchema';
-import { FormalModalProps } from '@mas-salud/interfaces/formModalProps';
+import { FormModalProps } from '@mas-salud/interfaces/formModalProps';
 import { errorFormat } from '@mas-salud/helpers/errorFormt';
 
 const BeneficiaryFormModal = ({
   onlyView,
   obj,
-}: FormalModalProps<IBeneficiary>) => {
+}: FormModalProps<IBeneficiary>) => {
   const { errorToast, successToast } = useToast();
   const { closeModal } = useModal();
   const { showLoading, hideLoading } = useLoading();
