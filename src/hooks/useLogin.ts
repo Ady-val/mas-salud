@@ -29,7 +29,12 @@ export const useLogin = () => {
 
   return useMutation({
     mutationFn: login,
-    onSuccess: () => {
+    onSuccess: (exist) => {
+      const token = exist?.accessToken;
+
+      if (token) {
+        localStorage.setItem('token', token);
+      }
       window.location.href = '/dashboard';
     },
     onError: (error) => {
