@@ -1,6 +1,7 @@
 export const QUERY_KEYS = {
   BENEFICIARIES: 'beneficiaries',
   BENEFICIARY: 'beneficiary',
+  BENEFICIARY_IMAGE: 'beneficiary-image',
   PRODUCTS: 'products',
   PRODUCT: 'product',
   INVENTORY: 'inventory',

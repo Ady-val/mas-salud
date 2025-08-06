@@ -10,6 +10,15 @@
   font-family: 'Raleway', sans-serif;
 } */
 
+.text-fit {font-size: calc(1vw + 1vh);
+  line-height: 1.2;
+  text-align: center;
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
 .debug-border {
   @apply border-2 border-black border-dashed;
 }

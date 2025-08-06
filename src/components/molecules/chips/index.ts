@@ -5,3 +5,4 @@ export { default as SmallViewChip } from './SmallViewChip';
 export { default as SmallEditChip } from './SmallEditChip';
 export { default as SmallDeleteChip } from './SmallDeleteChip';
 export { default as PlusChip } from './PlusChip';
+export { default as CredencialChip } from './CredencialChip';

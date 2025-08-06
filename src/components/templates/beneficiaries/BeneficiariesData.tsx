@@ -15,6 +15,8 @@ import { Modules } from '@mas-salud/enum/modules';
 
 import BeneficiaryDeleteAlertModal from './BeneficiaryDeleteAlertModal';
 import BeneficiaryFormModal from './BeneficiaryFormModal';
+import BeneficiaryImage from './BeneficiaryImage';
+import BeneficiaryCredencialModal from './BeneficiaryCredencialModal';
 
 const BeneficiariesData: React.FC = () => {
   const { openModal } = useModal();
@@ -63,7 +65,12 @@ const BeneficiariesData: React.FC = () => {
 
       return;
     }
-    openModal(<BeneficiaryFormModal obj={value as IBeneficiary} />);
+    openModal(
+      <BeneficiaryFormModal
+        obj={value as IBeneficiary}
+        uploadImage={handleUploadImage}
+      />,
+    );
   };
 
   const onDelete = (value: any) => {
@@ -78,11 +85,22 @@ const BeneficiariesData: React.FC = () => {
     openModal(<BeneficiaryDeleteAlertModal obj={value as IBeneficiary} />);
   };
 
+  const onCredencial = (value: any) => {
+    openModal(
+      <BeneficiaryCredencialModal id={(value as IBeneficiary).id || ''} />,
+    );
+  };
+
+  const handleUploadImage = (id: string) => {
+    openModal(<BeneficiaryImage id={id} />);
+  };
+
   return (
     <SimpleTable
       headers={HBeneficiaries({
         onView,
         onEdit,
+        onCredencial,
         onDelete,
       })}
       data={fetchedData?.data || []}

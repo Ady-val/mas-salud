@@ -1,6 +1,7 @@
 'use client';
 import {
   BeneficiaryCell,
+  BeneficiarySettingsCell,
   KeyValueCell,
   ModalBeneficiaryCell,
   ModalSettingsCell,
@@ -16,10 +17,12 @@ import { SPECIALITIES_LABELS } from './specialities';
 export const HBeneficiaries = ({
   onView,
   onEdit,
+  onCredencial,
   onDelete,
 }: {
   onView: (value: string) => void;
   onEdit: (value: string) => void;
+  onCredencial: (value: string) => void;
   onDelete: (value: string) => void;
 }): TDataHeaders<any>[] => {
   return [
@@ -61,7 +64,13 @@ export const HBeneficiaries = ({
         className: 'w-[5rem]',
       },
       cell: (_value, item) =>
-        SettingsCell({ value: item, onView, onEdit, onDelete }),
+        BeneficiarySettingsCell({
+          value: item,
+          onView,
+          onEdit,
+          onDelete,
+          onCredencial,
+        }),
     },
   ];
 };

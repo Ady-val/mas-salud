@@ -4,6 +4,7 @@ import {
   createBeneficiary,
   deleteBeneficiary,
   updateBeneficiary,
+  uploadBeneficiaryImage,
 } from '@mas-salud/lib/apiClient';
 
 export const useNewBeneficiary = () => {
@@ -38,4 +39,12 @@ export const useBeneficiaryMutation = () => {
   });
 
   return mutation;
+};
+
+export const useBeneficiaryImageMutation = () => {
+  return useMutation({
+    mutationFn: async (data: { id: string; image: File }) => {
+      return uploadBeneficiaryImage(data.id, data.image);
+    },
+  });
 };
