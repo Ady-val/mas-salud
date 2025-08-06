@@ -20,6 +20,8 @@ const BeneficiaryCredencialModal = ({ id }: { id: string }) => {
   const { closeModal } = useModal();
   const [identificationCode, setIdentificationCode] = useState<string>('');
   const [barcodeReady, setBarcodeReady] = useState(false);
+  const [beneficiaryNameCredencial, setBeneficiaryNameCredencial] =
+    useState<string>('');
   const [beneficiaryName, setBeneficiaryName] = useState<string>('');
 
   useEffect(() => {
@@ -31,7 +33,10 @@ const BeneficiaryCredencialModal = ({ id }: { id: string }) => {
 
         setImage(image || undefined);
         setIdentificationCode(data.identificationCode || '');
-        setBeneficiaryName(`${data.name}-${data.lastName}`);
+        setBeneficiaryNameCredencial(`${data.name}-${data.lastName}`);
+        setBeneficiaryName(
+          `${data.name} ${data.lastName} ${data.secondLastName}`,
+        );
         setLoadingImage(false);
       } catch (error) {
         console.log(error);
@@ -99,7 +104,7 @@ const BeneficiaryCredencialModal = ({ id }: { id: string }) => {
                 }}
               >
                 <div className='text-2xl font-bold text-black text-center'>
-                  Adalberto Valles Bonilla Delgado Junior
+                  {beneficiaryName}
                 </div>
                 <div className='text-xl font-medium text-black'>
                   Beneficiario
@@ -141,7 +146,9 @@ const BeneficiaryCredencialModal = ({ id }: { id: string }) => {
         <ModalButton
           text='Descargar Credencial'
           color='success'
-          onClick={() => downloadCredentialAsImage({ name: beneficiaryName })}
+          onClick={() =>
+            downloadCredentialAsImage({ name: beneficiaryNameCredencial })
+          }
         />
       </ModalFooter>
     </ModalContent>
